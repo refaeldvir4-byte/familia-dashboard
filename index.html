@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#04040a">
+<title>Familia · מפעל-התוכן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold1:#c9a84c; --gold2:#f0d080; --bg:#04040a; --bg2:#0b0b14;
+  --card:#0d0d18; --line:rgba(201,168,76,.22); --muted:#8a8a9a; --text:#ececf2;
+  --grad:linear-gradient(135deg,var(--gold1),var(--gold2));
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:Heebo,system-ui,sans-serif;
+  line-height:1.5;padding-bottom:40px}
+.wrap{max-width:680px;margin:0 auto;padding:0 14px}
+header{position:sticky;top:0;z-index:9;background:rgba(4,4,10,.82);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:11px;padding:13px 14px;max-width:680px;margin:0 auto}
+.emblem{width:38px;height:38px;flex:0 0 38px}
+.brand b{font-weight:800;font-size:19px;background:var(--grad);-webkit-background-clip:text;
+  background-clip:text;color:transparent;letter-spacing:.5px;display:block;line-height:1.1}
+.brand span{font-size:12px;color:var(--muted);font-weight:500}
+.spacer{flex:1}
+.iconbtn{background:transparent;border:1px solid var(--line);color:var(--gold2);
+  width:38px;height:38px;border-radius:11px;font-size:17px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;transition:.15s}
+.iconbtn:active{transform:scale(.92);background:rgba(201,168,76,.1)}
+.login{min-height:74vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;gap:16px;padding:20px}
+.lock{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  font-size:28px;background:rgba(201,168,76,.1);border:1px solid var(--line)}
+.login h1{margin:0;font-size:22px;background:var(--grad);-webkit-background-clip:text;
+  background-clip:text;color:transparent}
+.login p{margin:0;color:var(--muted);font-size:14px;max-width:300px}
+.field{display:flex;gap:8px;width:100%;max-width:320px;margin-top:6px}
+input[type=password]{flex:1;background:var(--bg2);border:1px solid var(--line);color:var(--text);
+  border-radius:12px;padding:13px 15px;font-size:16px;font-family:inherit;outline:none}
+input[type=password]:focus{border-color:var(--gold1)}
+.btn{background:var(--grad);color:#1a1405;border:0;border-radius:12px;padding:13px 20px;
+  font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:.15s}
+.btn:active{transform:scale(.96)}
+.err{color:#ff8b8b;font-size:13px;min-height:18px}
+.stats{display:flex;gap:9px;flex-wrap:wrap;padding:16px 0 6px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:13px;
+  padding:9px 13px;flex:1;min-width:92px}
+.stat .n{font-size:21px;font-weight:800;background:var(--grad);-webkit-background-clip:text;
+  background-clip:text;color:transparent;line-height:1}
+.stat .l{font-size:11.5px;color:var(--muted);margin-top:3px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:10px 0 14px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;background:var(--bg2);border:1px solid var(--line);color:var(--muted);
+  border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;font-family:inherit;transition:.15s}
+.chip.on{background:var(--grad);color:#1a1405;border-color:transparent;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;
+  overflow:hidden;margin-bottom:16px;animation:rise .35s both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.imgwrap{position:relative;width:100%;aspect-ratio:4/5;background:#070710}
+.imgwrap img{width:100%;height:100%;object-fit:cover;display:block}
+.noimg{width:100%;height:100%;display:grid;place-items:center;color:#3a3a48;font-size:13px}
+.body{padding:15px 16px 17px}
+.badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.badge{font-size:11px;font-weight:600;border-radius:7px;padding:4px 9px;border:1px solid var(--line);color:var(--muted)}
+.badge.pillar{color:var(--gold2);border-color:rgba(201,168,76,.4)}
+.badge.s-approved{color:#7ee0a6;border-color:rgba(126,224,166,.4)}
+.badge.s-idea{color:#9fb0d6}
+.badge.s-rejected{color:#ff8b8b;border-color:rgba(255,139,139,.4)}
+.badge.ready{color:#7ee0a6;border-color:rgba(126,224,166,.4)}
+.card h2{margin:2px 0 6px;font-size:18px;font-weight:700;color:#fff}
+.hook{margin:0 0 10px;color:var(--gold2);font-size:14px;font-weight:500}
+.caption{margin:0;color:#c8c8d4;font-size:14px;white-space:pre-wrap}
+.caption.clip{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.more{background:transparent;border:0;color:var(--gold1);font-size:13px;font-family:inherit;
+  cursor:pointer;padding:6px 0 0}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}
+.tag{font-size:12px;color:var(--gold2);background:rgba(201,168,76,.08);
+  border:1px solid rgba(201,168,76,.22);border-radius:7px;padding:3px 8px}
+.date{margin-top:11px;color:var(--muted);font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:50px 20px}
+.foot{text-align:center;color:#3a3a48;font-size:11px;padding:24px 0 8px}
+</style>
+</head>
+<body>
+<header>
+  <div class="hbar">
+    <svg class="emblem" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#c9a84c"/><stop offset="1" stop-color="#f0d080"/>
+      </linearGradient></defs>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="url(#g)" stroke-width="4"/>
+      <text x="50" y="68" text-anchor="middle" font-family="Georgia,serif" font-size="54"
+        font-weight="700" fill="url(#g)">F</text>
+    </svg>
+    <div class="brand"><b>Familia</b><span>מפעל-התוכן</span></div>
+    <div class="spacer"></div>
+    <button class="iconbtn" id="refresh" title="רענון" hidden>&#10227;</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="login" id="login">
+    <div class="lock">&#128274;</div>
+    <h1>הדאשבורד שלך</h1>
+    <p>הזן את סיסמת-הגישה כדי לראות את שבוע-התוכן, הקרוסלות והכיתובים.</p>
+    <div class="field">
+      <input type="password" id="pw" placeholder="סיסמה" autocomplete="current-password" enterkeyhint="go">
+      <button class="btn" id="go">כניסה</button>
+    </div>
+    <div class="err" id="err"></div>
+  </section>
+
+  <main id="app" hidden>
+    <div class="stats" id="stats"></div>
+    <div class="filters" id="filters"></div>
+    <div id="cards"></div>
+    <div class="foot">Familia · כוח של משפחה</div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var API='https://ujdkeqepqwbdzwycttah.supabase.co/functions/v1/dashboard';
+  var KEY='familia_code';
+  var loginEl=document.getElementById('login');
+  var appEl=document.getElementById('app');
+  var errEl=document.getElementById('err');
+  var pwEl=document.getElementById('pw');
+  var cardsEl=document.getElementById('cards');
+  var statsEl=document.getElementById('stats');
+  var filtersEl=document.getElementById('filters');
+  var refreshEl=document.getElementById('refresh');
+  var ALL=[]; var FILTER='all';
+
+  var STATUS_HE={idea:'רעיון',approved:'מאושר',rejected:'נדחה',archived:'ארכיון'};
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];});}
+
+  function api(pw){
+    return fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({password:pw})});
+  }
+
+  function login(){
+    var pw=pwEl.value.trim(); if(!pw){return;}
+    errEl.textContent='בודק…';
+    api(pw).then(function(r){
+      if(r.status===401){errEl.textContent='סיסמה שגויה. נסה שוב.';return null;}
+      if(!r.ok){errEl.textContent='שגיאת-שרת. נסה שוב.';return null;}
+      return r.json();
+    }).then(function(d){
+      if(!d){return;}
+      try{localStorage.setItem(KEY,pw);}catch(e){}
+      errEl.textContent=''; enter(d.items||[]);
+    }).catch(function(){errEl.textContent='בעיית-רשת. נסה שוב.';});
+  }
+
+  function reload(){
+    var pw=''; try{pw=localStorage.getItem(KEY)||'';}catch(e){}
+    if(!pw){return;}
+    refreshEl.style.opacity='.4';
+    api(pw).then(function(r){return r.ok?r.json():null;}).then(function(d){
+      refreshEl.style.opacity='1';
+      if(d){ALL=d.items||[];renderStats();renderFilters();renderCards();}
+    }).catch(function(){refreshEl.style.opacity='1';});
+  }
+
+  function enter(items){
+    ALL=items; loginEl.hidden=true; appEl.hidden=false; refreshEl.hidden=false;
+    renderStats(); renderFilters(); renderCards();
+  }
+
+  function firstScript(it){var s=it.scripts||[];return s.length?s[0]:null;}
+  function firstAsset(it){
+    var s=it.scripts||[];
+    for(var i=0;i<s.length;i++){var a=s[i].assets||[];for(var j=0;j<a.length;j++){
+      if(a[j].file_url){return a[j];}}}
+    return null;
+  }
+
+  function renderStats(){
+    var total=ALL.length;
+    var withImg=ALL.filter(function(it){return firstAsset(it);}).length;
+    var approved=ALL.filter(function(it){return it.status==='approved';}).length;
+    statsEl.innerHTML=
+      stat(total,'רעיונות')+stat(withImg,'מעוצבים')+stat(approved,'מאושרים');
+  }
+  function stat(n,l){return '<div class="stat"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';}
+
+  function renderFilters(){
+    var pillars={}; ALL.forEach(function(it){if(it.pillar){pillars[it.pillar]=1;}});
+    var html='<button class="chip'+(FILTER==='all'?' on':'')+'" data-f="all">הכל</button>';
+    Object.keys(pillars).forEach(function(p){
+      html+='<button class="chip'+(FILTER===p?' on':'')+'" data-f="'+esc(p)+'">'+esc(p)+'</button>';});
+    filtersEl.innerHTML=html;
+    Array.prototype.forEach.call(filtersEl.querySelectorAll('.chip'),function(c){
+      c.onclick=function(){FILTER=c.getAttribute('data-f');renderFilters();renderCards();};});
+  }
+
+  function renderCards(){
+    var list=ALL.filter(function(it){return FILTER==='all'||it.pillar===FILTER;});
+    if(!list.length){cardsEl.innerHTML='<div class="empty">אין פריטים להצגה.</div>';return;}
+    var html='';
+    list.forEach(function(it){
+      var sc=firstScript(it); var as=firstAsset(it);
+      var img = as ? '<img loading="lazy" src="'+esc(as.file_url)+'" alt="">'
+                   : '<div class="noimg">אין עיצוב עדיין</div>';
+      var badges='';
+      if(it.pillar){badges+='<span class="badge pillar">'+esc(it.pillar)+'</span>';}
+      var st=it.status||'idea';
+      badges+='<span class="badge s-'+esc(st)+'">'+esc(STATUS_HE[st]||st)+'</span>';
+      if(it.format){badges+='<span class="badge">'+esc(it.format)+'</span>';}
+      if(as){badges+='<span class="badge ready">מעוצב</span>';}
+      var cap=sc&&sc.caption?esc(sc.caption):'';
+      var capHtml=cap?'<p class="caption clip" id="c'+esc(it.id)+'">'+cap+'</p>'+
+        '<button class="more" data-c="'+esc(it.id)+'">קרא עוד</button>':'';
+      var tags='';
+      if(sc&&sc.hashtags&&sc.hashtags.length){
+        tags='<div class="tags">'+sc.hashtags.slice(0,8).map(function(t){
+          return '<span class="tag">'+esc(t)+'</span>';}).join('')+'</div>';}
+      var date=it.target_date?'<div class="date">&#128197; '+esc(it.target_date)+'</div>':'';
+      html+='<article class="card"><div class="imgwrap">'+img+'</div><div class="body">'+
+        '<div class="badges">'+badges+'</div>'+
+        '<h2>'+esc(it.title||'(ללא כותרת)')+'</h2>'+
+        (it.hook?'<p class="hook">'+esc(it.hook)+'</p>':'')+
+        capHtml+tags+date+'</div></article>';
+    });
+    cardsEl.innerHTML=html;
+    Array.prototype.forEach.call(cardsEl.querySelectorAll('.more'),function(b){
+      b.onclick=function(){
+        var p=document.getElementById('c'+b.getAttribute('data-c'));
+        if(p){p.classList.toggle('clip');b.textContent=p.classList.contains('clip')?'קרא עוד':'הצג פחות';}
+      };});
+  }
+
+  document.getElementById('go').onclick=login;
+  pwEl.addEventListener('keydown',function(e){if(e.key==='Enter'){login();}});
+  refreshEl.onclick=reload;
+
+  var saved=''; try{saved=localStorage.getItem(KEY)||'';}catch(e){}
+  if(saved){
+    api(saved).then(function(r){return r.ok?r.json():null;}).then(function(d){
+      if(d){enter(d.items||[]);}
+    }).catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
