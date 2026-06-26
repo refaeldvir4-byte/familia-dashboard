@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Familia · הסרטון מוכן — קרדיו לא הורס שריר</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--gold-hi:#f0d080;--gold:#c9a84c;--ink:#04040a;--paper:#0c0c14;--ok:#5fd07a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ink);color:#ececf2;font-family:'Heebo',system-ui,sans-serif;line-height:1.6;
+       padding:28px 18px 64px;background-image:radial-gradient(1000px 460px at 50% -90px,rgba(201,168,76,.18),transparent)}
+  .wrap{max-width:980px;margin:0 auto}
+  .badge{display:inline-block;border:1px solid rgba(95,208,122,.5);color:var(--ok);
+         padding:5px 14px;border-radius:999px;font-size:13px;letter-spacing:.5px;margin-bottom:14px}
+  h1{font-weight:900;font-size:clamp(26px,5vw,42px);
+     background:linear-gradient(180deg,var(--gold-hi),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:#a7a7b6;margin-top:6px;font-size:clamp(15px,2.4vw,18px)}
+  .stage{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;margin-top:26px}
+  .player{flex:0 0 auto;width:min(340px,88vw);margin:0 auto}
+  .player video{width:100%;border-radius:22px;border:1px solid rgba(201,168,76,.35);
+                box-shadow:0 20px 54px rgba(0,0,0,.6);background:#000;display:block;aspect-ratio:9/16}
+  .player .hint{text-align:center;color:#8a8a99;font-size:13px;margin-top:10px}
+  .side{flex:1 1 320px;min-width:280px}
+  .box{background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:16px;padding:16px 20px;margin-bottom:16px}
+  .box h2{font-size:17px;color:var(--gold-hi);margin-bottom:10px}
+  .box li{list-style:none;margin:7px 0;padding-right:24px;position:relative;color:#d3d3df;font-size:14.5px}
+  .box li::before{content:"✓";position:absolute;right:0;color:var(--ok);font-weight:900}
+  .box.next li::before{content:"→";color:var(--gold)}
+  .meta{color:#9a9aa8;font-size:13px;margin-top:4px}
+  .foot{margin-top:30px;text-align:center;color:#8a8a99;font-size:13px}
+  .foot b{color:var(--gold)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="badge">✅ מוכן לצפייה</span>
+    <h1>קרדיו לא הורס שריר</h1>
+    <div class="sub">הסרטון המלא — 25 שניות · 7 שוטים · פילר: מלמד.</div>
+
+    <div class="stage">
+      <div class="player">
+        <video src="reel.mp4" autoplay muted loop playsinline controls></video>
+        <div class="hint">▶︎ מתנגן אוטומטית · ללא קול (מוזיקה בהמשך)</div>
+      </div>
+      <div class="side">
+        <div class="box">
+          <h2>מה יש בסרטון</h2>
+          <ul>
+            <li>וו חזק: "קרדיו אוכל לך את השריר?"</li>
+            <li>ריצה נינוחה · צלחת חלבון · כפיפת-מרפק · דופק · סיכום</li>
+            <li>כרטיס-סיום: "תוסיף קרדיו, בלי לפחד" + ההאנדל</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h2>בקרת-איכות</h2>
+          <ul>
+            <li>דמות עקבית לכל האורך</li>
+            <li>נעליים נשארות, אנטומיה תקינה (גם בתנועה)</li>
+            <li>תאורת-זהב חמה · בגדים חלקים בלי לוגו</li>
+            <li>כיתובי-זהב בעברית · 1080×1920</li>
+          </ul>
+        </div>
+        <div class="box next">
+          <h2>הצעדים הבאים (לבחירתך)</h2>
+          <ul>
+            <li>להוסיף מוזיקה חופשית-זכויות</li>
+            <li>שינויים בכיתוב/שוט אם תרצה</li>
+            <li>אישור → פרסום לאינסטגרם</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">Familia · <b>כוח של משפחה</b> · @familia_fitness_coach</div>
+  </div>
+</body>
+</html>
