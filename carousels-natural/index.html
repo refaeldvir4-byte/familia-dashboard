@@ -3,38 +3,68 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>5 הקרוסלות — טבעי-מואר · Familia</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 body{margin:0;background:#04040a;color:#edecf3;font-family:Heebo,system-ui,sans-serif;padding:22px 0 60px}
 h1{font-size:23px;background:linear-gradient(135deg,#c9a84c,#f0d080);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center;margin:2px 14px 4px;font-weight:900}
 p.s{color:#9a9aac;text-align:center;font-size:14px;margin:0 14px 22px}
-.car{margin:0 0 30px}
-.car h2{font-size:16px;color:#f0d080;font-weight:800;margin:0 16px 4px}
-.car .p{font-size:12px;color:#7a7a8a;margin:0 16px 10px}
+.car{margin:0 0 34px}
+.chead{display:flex;align-items:baseline;justify-content:space-between;margin:0 16px 10px;gap:10px}
+.chead h2{font-size:16px;color:#f0d080;font-weight:800;margin:0}
+.chead .p{font-size:12px;color:#7a7a8a;margin:0}
 .strip{display:flex;overflow-x:auto;gap:9px;padding:0 16px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
 .strip::-webkit-scrollbar{height:0}
-.strip img{flex:0 0 76%;scroll-snap-align:center;border-radius:13px;border:1px solid rgba(201,168,76,.18);display:block}
+.slide{flex:0 0 76%;scroll-snap-align:center}
+.slide img{width:100%;border-radius:13px 13px 0 0;border:1px solid rgba(201,168,76,.18);border-bottom:0;display:block}
+.slide a.dl{display:block;text-align:center;font-size:12.5px;font-weight:700;color:#f0d080;background:#0d0d18;border:1px solid rgba(201,168,76,.18);border-top:0;border-radius:0 0 13px 13px;padding:7px 0;text-decoration:none}
+.slide a.dl:active{background:#15152a}
+.zip{margin:10px 16px 0}
+.zip button{width:100%;font-family:inherit;font-size:14px;font-weight:800;color:#04140c;background:linear-gradient(135deg,#8ce6b0,#5fd08f);border:0;border-radius:12px;padding:11px 0;cursor:pointer}
+.zip button:disabled{opacity:.6}
 .hint{text-align:center;color:#6a6a7a;font-size:11.5px;margin:0 14px 18px}
-.note{margin:8px 16px 0;background:#0d0d18;border:1px solid rgba(127,224,166,.25);border-radius:16px;padding:15px 17px;color:#c8c8d4;font-size:13.5px;line-height:1.7}
-.note b{color:#7fe0a6}
+.note{margin:8px 16px 0;background:#0d0d18;border:1px solid rgba(201,168,76,.22);border-radius:16px;padding:15px 17px;color:#c8c8d4;font-size:13.5px;line-height:1.7}
+.note b{color:#f0d080}
 </style></head><body>
 <h1>5 הקרוסלות — טבעי-מואר ✓</h1>
-<p class="s">הסגנון שבחרתם במשפחה, על כל הקרוסלות</p>
-<p class="hint">← החליקו כל קרוסלה לצדדים לראות את כל 5 השקופיות →</p>
+<p class="s">הסגנון שבחרתם · החליקו כל קרוסלה, והורידו לטלפון</p>
+<div id="app"></div>
 
-<div class="car"><h2>① קרדיו לא שורף שריר</h2><div class="p">מלמד · ניפוץ מיתוס</div>
-<div class="strip"><img src="img/cardio-myth_01.png"><img src="img/cardio-myth_02.png"><img src="img/cardio-myth_03.png"><img src="img/cardio-myth_04.png"><img src="img/cardio-myth_05.png"></div></div>
+<div class="note"><b>הורדה:</b> תחת כל תמונה יש <b>⤓ הורד</b> (שמירה לטלפון), ולכל קרוסלה <b>⤓ הורד את כל ה-5</b> (ZIP).<br><b>בקרוב:</b> כפתור <b>🔄 רנדר מחדש</b> לכל תמונה (מחבר אותו עכשיו ל-GPU שבמחשב).</div>
 
-<div class="car"><h2>② כמה מים באמת צריך</h2><div class="p">מלמד · בלי נוסחאות</div>
-<div class="strip"><img src="img/hydration_01.png"><img src="img/hydration_02.png"><img src="img/hydration_03.png"><img src="img/hydration_04.png"><img src="img/hydration_05.png"></div></div>
-
-<div class="car"><h2>③ למה אתה לא רואה תוצאות</h2><div class="p">אוטוריטה · שלוש סיבות</div>
-<div class="strip"><img src="img/no-results_01.png"><img src="img/no-results_02.png"><img src="img/no-results_03.png"><img src="img/no-results_04.png"><img src="img/no-results_05.png"></div></div>
-
-<div class="car"><h2>④ אימון עם ילדים בבית</h2><div class="p">שייכות · כושר משפחתי</div>
-<div class="strip"><img src="img/train-with-kids_01.png"><img src="img/train-with-kids_02.png"><img src="img/train-with-kids_03.png"><img src="img/train-with-kids_04.png"><img src="img/train-with-kids_05.png"></div></div>
-
-<div class="car"><h2>⑤ שלושה חודשים, הרגל אחד</h2><div class="p">טרנספורמציה · שינוי קטן</div>
-<div class="strip"><img src="img/one-habit_01.png"><img src="img/one-habit_02.png"><img src="img/one-habit_03.png"><img src="img/one-habit_04.png"><img src="img/one-habit_05.png"></div></div>
-
-<div class="note"><b>הכל מוכן:</b> 5 הקרוסלות חודשו בסגנון טבעי-מואר, רונדרו עם הטקסט-זהב והלוגו, והועלו ל-Storage. השיער בפוסט-הילדים מחובר וטבעי. <b>זו טיוטה לאישורך</b> — תגיד אם משהו צריך תיקון, או אם זה מאושר לפרסום.</div>
+<script>
+const CAROUSELS=[
+ {slug:"cardio-myth", title:"① קרדיו לא שורף שריר", p:"מלמד"},
+ {slug:"hydration", title:"② כמה מים באמת צריך", p:"מלמד"},
+ {slug:"no-results", title:"③ למה אתה לא רואה תוצאות", p:"אוטוריטה"},
+ {slug:"train-with-kids", title:"④ אימון עם ילדים בבית", p:"שייכות"},
+ {slug:"one-habit", title:"⑤ שלושה חודשים, הרגל אחד", p:"טרנספורמציה"},
+];
+const pad=n=>String(n).padStart(2,'0');
+function render(){
+  const app=document.getElementById('app');
+  app.innerHTML=CAROUSELS.map(c=>{
+    const slides=[1,2,3,4,5].map(i=>{
+      const f=`${c.slug}_${pad(i)}.png`;
+      return `<div class="slide"><img src="img/${f}" loading="lazy">`+
+             `<a class="dl" href="img/${f}" download="${f}">⤓ הורד שקופית ${i}</a></div>`;
+    }).join('');
+    return `<div class="car"><div class="chead"><h2>${c.title}</h2><span class="p">${c.p}</span></div>`+
+           `<div class="strip">${slides}</div>`+
+           `<div class="zip"><button onclick="zipAll('${c.slug}',this)">⤓ הורד את כל ה-5 (ZIP)</button></div></div>`;
+  }).join('');
+}
+async function zipAll(slug,btn){
+  const old=btn.textContent; btn.disabled=true; btn.textContent='מכין ZIP...';
+  try{
+    const zip=new JSZip();
+    for(let i=1;i<=5;i++){const f=`${slug}_${pad(i)}.png`;
+      const b=await fetch('img/'+f).then(r=>r.blob()); zip.file(f,b);}
+    const blob=await zip.generateAsync({type:'blob'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=slug+'.zip';
+    document.body.appendChild(a); a.click(); a.remove();
+    btn.textContent='✓ הורד'; setTimeout(()=>{btn.textContent=old;btn.disabled=false;},2500);
+  }catch(e){ btn.textContent='שגיאה — נסה שוב'; btn.disabled=false; }
+}
+render();
+</script>
 </body></html>
