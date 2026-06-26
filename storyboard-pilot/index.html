@@ -17,65 +17,62 @@
   h1{font-weight:900;font-size:clamp(26px,5vw,42px);
      background:linear-gradient(180deg,var(--gold-hi),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{color:#a7a7b6;margin-top:6px;font-size:clamp(15px,2.4vw,18px)}
-  .stage{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;margin-top:26px}
-  .player{flex:0 0 auto;width:min(330px,86vw)}
-  .player video{width:100%;border-radius:22px;border:1px solid rgba(201,168,76,.35);
-                box-shadow:0 18px 50px rgba(0,0,0,.55);background:#000;display:block;aspect-ratio:9/16}
-  .player .hint{text-align:center;color:#8a8a99;font-size:13px;margin-top:10px}
-  .side{flex:1 1 320px;min-width:280px}
-  .qc{background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:16px;padding:18px 20px}
-  .qc h2{font-size:18px;color:var(--gold-hi);margin-bottom:10px}
-  .qc li{list-style:none;margin:8px 0;padding-right:26px;position:relative;color:#d3d3df;font-size:15px}
+  .compare{display:flex;flex-wrap:wrap;gap:24px;margin-top:26px;justify-content:center}
+  .col{flex:1 1 300px;max-width:360px}
+  .col h2{font-size:16px;margin-bottom:10px;text-align:center;color:#cfcfe0}
+  .col.fast h2{color:var(--gold-hi)}
+  .pill{font-size:11px;border-radius:999px;padding:2px 9px;margin-inline-start:7px}
+  .pill.rec{background:rgba(95,208,122,.16);color:#7fe39a;border:1px solid rgba(95,208,122,.4)}
+  video{width:100%;border-radius:20px;border:1px solid rgba(201,168,76,.30);
+        box-shadow:0 16px 44px rgba(0,0,0,.55);background:#000;display:block;aspect-ratio:9/16}
+  .col.fast video{border-color:rgba(95,208,122,.5)}
+  .meta{text-align:center;color:#8a8a99;font-size:12.5px;margin-top:8px}
+  table{width:100%;border-collapse:collapse;margin:30px 0 6px;font-size:14.5px}
+  th,td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);text-align:right}
+  th{color:var(--gold);font-weight:800}
+  td.win{color:#7fe39a;font-weight:800}
+  .qc{background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:16px;padding:16px 20px;margin-top:14px}
+  .qc h3{font-size:16px;color:var(--gold-hi);margin-bottom:8px}
+  .qc li{list-style:none;margin:6px 0;padding-right:24px;position:relative;color:#d3d3df;font-size:14.5px}
   .qc li::before{content:"✓";position:absolute;right:0;color:#5fd07a;font-weight:900}
-  .qc li.warn::before{content:"•";color:var(--gold)}
-  .meta{margin-top:14px;color:#9a9aa8;font-size:13px}
-  h3.section{margin:38px 0 4px;color:#cfcfe0;font-size:16px;font-weight:800}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:14px}
-  .card{background:var(--paper);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden}
-  .card img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000}
-  .card .body{padding:11px 13px 15px}
-  .tag{font-size:11px;color:var(--gold);letter-spacing:.5px}
-  .cap{font-weight:800;font-size:15px;color:var(--gold-hi);margin:3px 0 5px}
-  .desc{font-size:13px;color:#b3b3c2}
-  .foot{margin-top:40px;text-align:center;color:#8a8a99;font-size:13px}
+  .foot{margin-top:38px;text-align:center;color:#8a8a99;font-size:13px}
   .foot b{color:var(--gold)}
 </style>
 </head>
 <body>
   <div class="wrap">
-    <span class="badge">פיילוט · הושלם ✅</span>
+    <span class="badge">פיילוט · השוואת-מהירות</span>
     <h1>קרדיו לא הורס שריר</h1>
-    <div class="sub">3 השוטים הראשונים — <b>מונפשים</b>. בדיקת-איכות לפני הפקת הסרטון המלא (25ש').</div>
+    <div class="sub">אותם 3 שוטים, בשתי דרכי-הפקה. ההבדל הוא הזמן — <b>לא האיכות</b>. בחר את הקצב.</div>
 
-    <div class="stage">
-      <div class="player">
-        <video src="pilot.mp4" autoplay muted loop playsinline controls></video>
-        <div class="hint">▶︎ מתנגן אוטומטית · ללא קול (מוזיקה תתווסף בגרסה המלאה)</div>
+    <div class="compare">
+      <div class="col fast">
+        <h2>מהיר <span class="pill rec">מומלץ</span></h2>
+        <video src="pilot_fast.mp4" autoplay muted loop playsinline controls></video>
+        <div class="meta">544→1080 · ~2 דק'/שוט</div>
       </div>
-      <div class="side">
-        <div class="qc">
-          <h2>מה נבדק ועבר</h2>
-          <ul>
-            <li>הדמות עקבית — אותו אדם, אותו לבוש, בין כל השוטים</li>
-            <li>בשוט-הריצה: הנעליים נשארות על שתי הרגליים מתחילת הקליפ ועד סופו (בלי "סחיפה")</li>
-            <li>חדות טובה, בלי טשטוש, אנטומיה תקינה</li>
-            <li>כיתובי-זהב בעברית, מסגרת, לוגו והאנדל @familia_fitness_coach</li>
-            <li class="warn">לשיפור במלא: לחמם את תאורת שוט-הוו; "לנקות" לוגואים מדומיינים</li>
-            <li class="warn">כל קליפ כאן ~2.5ש' (קצר=יציב); במלא נתזמן למשכים המלאים</li>
-          </ul>
-          <div class="meta">מנוע: Hunyuan 1.5 i2v · 61 פריימים · 20 צעדים · עיגון-מראה מפורש</div>
-        </div>
+      <div class="col">
+        <h2>איכות</h2>
+        <video src="pilot.mp4" autoplay muted loop playsinline controls></video>
+        <div class="meta">720p · ~7 דק'/שוט</div>
       </div>
     </div>
 
-    <h3 class="section">הקאדרים (סטילים) שמהם נוצרה התנועה</h3>
-    <div class="grid">
-      <div class="card"><img src="shot1.png" alt="וו">
-        <div class="body"><div class="tag">🎣 וו · 3ש'</div><div class="cap">"קרדיו אוכל לך את השריר?"</div><div class="desc">עומד ליד ההליכון, מבט ספק.</div></div></div>
-      <div class="card"><img src="shot2.png" alt="ריצה">
-        <div class="body"><div class="tag">סצנה · 4ש'</div><div class="cap">"קרדיו נינוח לא שורף שריר"</div><div class="desc">רץ בקצב נינוח, פונה קדימה.</div></div></div>
-      <div class="card"><img src="shot3.png" alt="תזונה">
-        <div class="body"><div class="tag">סצנה · 4ש'</div><div class="cap">"אוכלים מספיק חלבון — השריר מוגן"</div><div class="desc">צלחת מאוזנת עם אדים.</div></div></div>
+    <table>
+      <tr><th>&nbsp;</th><th>מהיר (544→1080)</th><th>איכות (720p)</th></tr>
+      <tr><td>זמן לשוט</td><td class="win">~2 דקות</td><td>~7 דקות</td></tr>
+      <tr><td>סרטון מלא (25ש', 7 שוטים)</td><td class="win">~14 דקות</td><td>~50 דקות</td></tr>
+      <tr><td>רזולוציה סופית</td><td>1080×1920</td><td>1080×1920</td></tr>
+      <tr><td>איכות נראית</td><td class="win">מצוין</td><td>מצוין</td></tr>
+    </table>
+
+    <div class="qc">
+      <h3>מה נבדק ועבר (בשתי הגרסאות)</h3>
+      <ul>
+        <li>דמות עקבית — אותו אדם, אותו לבוש, בין כל השוטים</li>
+        <li>בשוט-הריצה הנעליים נשארות על שתי הרגליים מתחילת הקליפ ועד סופו</li>
+        <li>חדות טובה, אנטומיה תקינה, כיתובי-זהב בעברית + האנדל הנכון</li>
+      </ul>
     </div>
 
     <div class="foot">Familia · <b>כוח של משפחה</b> · @familia_fitness_coach</div>
