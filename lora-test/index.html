@@ -3,36 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Familia · ה-LoRA שלך — מבחן דמיון</title>
+<title>Familia · ה-LoRA שלך — v1 מול v2</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
-  :root{--gold-hi:#f0d080;--gold:#c9a84c;--ink:#04040a;--paper:#0c0c14;--ok:#5fd07a}
+  :root{--gold-hi:#f0d080;--gold:#c9a84c;--ink:#04040a;--paper:#0c0c14;--ok:#5fd07a;--warn:#e6b455}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--ink);color:#ececf2;font-family:'Heebo',system-ui,sans-serif;line-height:1.6;
-       padding:26px 16px 60px;background-image:radial-gradient(1000px 460px at 50% -90px,rgba(201,168,76,.18),transparent)}
-  .wrap{max-width:1000px;margin:0 auto}
+  body{background:var(--ink);color:#ececf2;font-family:'Heebo',system-ui,sans-serif;line-height:1.65;
+       padding:26px 14px 70px;background-image:radial-gradient(1000px 460px at 50% -90px,rgba(201,168,76,.18),transparent)}
+  .wrap{max-width:980px;margin:0 auto}
   .badge{display:inline-block;border:1px solid rgba(95,208,122,.5);color:var(--ok);padding:5px 14px;border-radius:999px;font-size:13px;margin-bottom:12px}
   h1{font-weight:900;font-size:clamp(24px,5vw,40px);background:linear-gradient(180deg,var(--gold-hi),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{color:#a7a7b6;margin-top:6px;font-size:15px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
-  .card{background:var(--paper);border:1px solid rgba(201,168,76,.25);border-radius:18px;overflow:hidden}
+  .shot{margin-top:26px}
+  .shot h2{font-size:18px;color:var(--gold-hi);font-weight:800;margin-bottom:10px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .card{background:var(--paper);border:1px solid rgba(201,168,76,.25);border-radius:16px;overflow:hidden;position:relative}
+  .card.v2{border-color:rgba(240,208,128,.7);box-shadow:0 0 0 1px rgba(240,208,128,.25)}
   .card img{width:100%;display:block;background:#000}
-  .card .l{padding:11px 14px;font-weight:800;color:var(--gold-hi);font-size:15px}
-  .note{margin-top:22px;background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:14px;padding:14px 18px;color:#cdcdda;font-size:14.5px}
-  .foot{margin-top:26px;text-align:center;color:#8a8a99;font-size:13px}
+  .tag{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.72);padding:3px 10px;border-radius:999px;font-size:12px;font-weight:800}
+  .tag.v1{color:#a7a7b6}
+  .tag.v2{color:var(--gold-hi)}
+  .note{margin-top:26px;background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:14px;padding:15px 18px;font-size:14.5px}
+  .note h3{font-size:15px;margin-bottom:6px}
+  .ok h3{color:var(--ok)} .warn h3{color:var(--warn)}
+  .note ul{margin:6px 18px 0} .note li{margin:4px 0;color:#cdcdda}
+  .ask{margin-top:22px;background:linear-gradient(180deg,rgba(201,168,76,.14),rgba(201,168,76,.05));
+       border:1px solid rgba(240,208,128,.5);border-radius:16px;padding:18px 20px}
+  .ask b{color:var(--gold-hi)}
+  .foot{margin-top:30px;text-align:center;color:#8a8a99;font-size:13px}
 </style>
 </head>
 <body>
   <div class="wrap">
-    <span class="badge">✅ LoRA אישי — נוצר מקומית</span>
-    <h1>זה אתה, שנוצר ע"י AI</h1>
-    <div class="sub">3 תמונות שה-AI יצר מה-LoRA שאימנו על 20 התמונות שלך. אלו לא תמונות אמיתיות — הן מיוצרות.</div>
-    <div class="grid">
-      <div class="card"><img src="portrait.png" alt="פרצוף"><div class="l">פרצוף</div></div>
-      <div class="card"><img src="body.png" alt="גוף מלא"><div class="l">גוף מלא · חדר כושר</div></div>
-      <div class="card"><img src="curl.png" alt="כפיפת מרפק"><div class="l">כפיפת-מרפק (פיזיק)</div></div>
+    <span class="badge">✅ LoRA v2 (dim 32) — אומן מקומית · 2500 צעדים</span>
+    <h1>זה אתה — v1 מול v2</h1>
+    <div class="sub">משמאל הגרסה הישנה (v1, dim 16), מימין החדשה והחזקה (v2, dim 32). כל התמונות מיוצרות ע"י AI — לא צילומים אמיתיים.</div>
+
+    <div class="shot">
+      <h2>פרצוף (תקריב)</h2>
+      <div class="pair">
+        <div class="card"><span class="tag v1">v1</span><img src="portrait.png" alt="v1 פרצוף"></div>
+        <div class="card v2"><span class="tag v2">v2</span><img src="portrait_v2.png" alt="v2 פרצוף"></div>
+      </div>
     </div>
-    <div class="note">🎯 <b>המבחן:</b> האם זה נראה לך כמוך? אם כן — מעכשיו נוכל לייצר אותך ב<b>כל סצנה, פוזה ותרגיל</b> שנרצה, עם הפרצוף והגוף שלך. אם משהו צריך כיוונון (חוזק/פרטים) — תגיד ואכוונן.</div>
+
+    <div class="shot">
+      <h2>גוף</h2>
+      <div class="pair">
+        <div class="card"><span class="tag v1">v1</span><img src="body.png" alt="v1 גוף"></div>
+        <div class="card v2"><span class="tag v2">v2</span><img src="body_v2.png" alt="v2 גוף"></div>
+      </div>
+    </div>
+
+    <div class="shot">
+      <h2>תרגיל (כפיפת-מרפק)</h2>
+      <div class="pair">
+        <div class="card"><span class="tag v1">v1</span><img src="curl.png" alt="v1 תרגיל"></div>
+        <div class="card v2"><span class="tag v2">v2</span><img src="curl_v2.png" alt="v2 תרגיל"></div>
+      </div>
+    </div>
+
+    <div class="note ok">
+      <h3>✅ מה השתפר ב-v2</h3>
+      <ul>
+        <li><b>הפנים נעולות</b> — בכל הזוויות זה אותו אדם בדיוק. זה התיקון לבעיה של "הפרצוף משתנה".</li>
+        <li>נראה כמו אדם <b>אמיתי וספציפי</b>, לא דמות גנרית.</li>
+      </ul>
+    </div>
+
+    <div class="note warn">
+      <h3>⚠️ מה שחשוב לדעת</h3>
+      <ul>
+        <li>ה-LoRA למד גם את <b>סגנון הסלפי</b> של התמונות שהעלית, אז גם כשמבקשים "גוף מלא בחדר-כושר" הוא נוטה להחזיר סלפי-תקריב.</li>
+        <li>לשוטי <b>"מנטור מדבר למצלמה"</b> (תקריב) — מושלם, מוכן. לשוטי <b>גוף-מלא/תרגיל</b> — אוריד עוצמה (~0.7) ואוסיף כיוון-תנוחה.</li>
+      </ul>
+    </div>
+
+    <div class="ask">
+      🎯 <b>השאלה אליך:</b> תסתכל על העמודה הימנית (v2). <b>הפרצוף — זה אתה? הגענו ל-90-95%?</b><br>
+      אם כן — מחבר את ה-LoRA לצינור-הריאלס ובונים ריאל אמיתי איתך. אם חסר — נחדד.
+    </div>
+
     <div class="foot">Familia · כוח של משפחה · @familia_fitness_coach</div>
   </div>
 </body>
