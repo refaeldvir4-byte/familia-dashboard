@@ -11,64 +11,71 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--ink);color:#ececf2;font-family:'Heebo',system-ui,sans-serif;line-height:1.6;
        padding:28px 18px 60px;background-image:radial-gradient(1200px 500px at 50% -120px,rgba(201,168,76,.16),transparent)}
-  .wrap{max-width:1100px;margin:0 auto}
+  .wrap{max-width:1080px;margin:0 auto}
   .badge{display:inline-block;border:1px solid rgba(201,168,76,.5);color:var(--gold-hi);
          padding:5px 14px;border-radius:999px;font-size:13px;letter-spacing:.5px;margin-bottom:14px}
   h1{font-weight:900;font-size:clamp(26px,5vw,42px);
      background:linear-gradient(180deg,var(--gold-hi),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
   .sub{color:#a7a7b6;margin-top:6px;font-size:clamp(15px,2.4vw,18px)}
-  .note{background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:14px;
-        padding:14px 18px;margin:22px 0;color:#cdcdda;font-size:15px}
-  .note b{color:var(--gold-hi)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:24px}
-  .card{background:var(--paper);border:1px solid rgba(255,255,255,.06);border-radius:18px;overflow:hidden;
-        box-shadow:0 12px 30px rgba(0,0,0,.45)}
+  .stage{display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;margin-top:26px}
+  .player{flex:0 0 auto;width:min(330px,86vw)}
+  .player video{width:100%;border-radius:22px;border:1px solid rgba(201,168,76,.35);
+                box-shadow:0 18px 50px rgba(0,0,0,.55);background:#000;display:block;aspect-ratio:9/16}
+  .player .hint{text-align:center;color:#8a8a99;font-size:13px;margin-top:10px}
+  .side{flex:1 1 320px;min-width:280px}
+  .qc{background:var(--paper);border:1px solid rgba(201,168,76,.22);border-radius:16px;padding:18px 20px}
+  .qc h2{font-size:18px;color:var(--gold-hi);margin-bottom:10px}
+  .qc li{list-style:none;margin:8px 0;padding-right:26px;position:relative;color:#d3d3df;font-size:15px}
+  .qc li::before{content:"✓";position:absolute;right:0;color:#5fd07a;font-weight:900}
+  .qc li.warn::before{content:"•";color:var(--gold)}
+  .meta{margin-top:14px;color:#9a9aa8;font-size:13px}
+  h3.section{margin:38px 0 4px;color:#cfcfe0;font-size:16px;font-weight:800}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:14px}
+  .card{background:var(--paper);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden}
   .card img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover;background:#000}
-  .card .body{padding:14px 16px 18px}
-  .tag{font-size:12px;color:var(--gold);letter-spacing:.6px;text-transform:uppercase}
-  .cap{font-weight:800;font-size:18px;color:var(--gold-hi);margin:4px 0 6px}
-  .desc{font-size:14px;color:#b9b9c8}
-  .foot{margin-top:34px;text-align:center;color:#8a8a99;font-size:13px}
+  .card .body{padding:11px 13px 15px}
+  .tag{font-size:11px;color:var(--gold);letter-spacing:.5px}
+  .cap{font-weight:800;font-size:15px;color:var(--gold-hi);margin:3px 0 5px}
+  .desc{font-size:13px;color:#b3b3c2}
+  .foot{margin-top:40px;text-align:center;color:#8a8a99;font-size:13px}
   .foot b{color:var(--gold)}
 </style>
 </head>
 <body>
   <div class="wrap">
-    <span class="badge">פיילוט · שלב 1 מתוך 2</span>
+    <span class="badge">פיילוט · הושלם ✅</span>
     <h1>קרדיו לא הורס שריר</h1>
-    <div class="sub">סטוריבורד לריאל · 25 שניות · פילר: מלמד — אלו ה<b>סטילים</b> (התמונות) לפני ההנפשה.</div>
+    <div class="sub">3 השוטים הראשונים — <b>מונפשים</b>. בדיקת-איכות לפני הפקת הסרטון המלא (25ש').</div>
 
-    <div class="note">
-      🎬 <b>מה אתה רואה כאן:</b> שלושת הקאדרים הראשונים של הסרטון, כפי שייוצרו ל-AI.
-      המטרה בשלב הזה — לבדוק ש<b>הדמות עקבית</b> (אותו אדם, אותו לבוש) ושהקומפוזיציה נכונה.
-      <br>⏳ <b>ההנפשה (וידאו) רצה עכשיו</b> ותתווסף לכאן בעוד מספר דקות — שם נבחן את התנועה.
+    <div class="stage">
+      <div class="player">
+        <video src="pilot.mp4" autoplay muted loop playsinline controls></video>
+        <div class="hint">▶︎ מתנגן אוטומטית · ללא קול (מוזיקה תתווסף בגרסה המלאה)</div>
+      </div>
+      <div class="side">
+        <div class="qc">
+          <h2>מה נבדק ועבר</h2>
+          <ul>
+            <li>הדמות עקבית — אותו אדם, אותו לבוש, בין כל השוטים</li>
+            <li>בשוט-הריצה: הנעליים נשארות על שתי הרגליים מתחילת הקליפ ועד סופו (בלי "סחיפה")</li>
+            <li>חדות טובה, בלי טשטוש, אנטומיה תקינה</li>
+            <li>כיתובי-זהב בעברית, מסגרת, לוגו והאנדל @familia_fitness_coach</li>
+            <li class="warn">לשיפור במלא: לחמם את תאורת שוט-הוו; "לנקות" לוגואים מדומיינים</li>
+            <li class="warn">כל קליפ כאן ~2.5ש' (קצר=יציב); במלא נתזמן למשכים המלאים</li>
+          </ul>
+          <div class="meta">מנוע: Hunyuan 1.5 i2v · 61 פריימים · 20 צעדים · עיגון-מראה מפורש</div>
+        </div>
+      </div>
     </div>
 
+    <h3 class="section">הקאדרים (סטילים) שמהם נוצרה התנועה</h3>
     <div class="grid">
-      <div class="card">
-        <img src="shot1.png" alt="שוט 1 — וו">
-        <div class="body">
-          <div class="tag">🎣 וו · 3ש'</div>
-          <div class="cap">"קרדיו אוכל לך את השריר?"</div>
-          <div class="desc">עומד ליד ההליכון, מבט של ספק — דימוי שעוצר גלילה.</div>
-        </div>
-      </div>
-      <div class="card">
-        <img src="shot2.png" alt="שוט 2 — ריצה">
-        <div class="body">
-          <div class="tag">סצנה · 4ש'</div>
-          <div class="cap">"קרדיו נינוח לא שורף שריר"</div>
-          <div class="desc">רץ בקצב נינוח, פונה קדימה. אותו אדם, אותו לבוש, נעליים לבנות.</div>
-        </div>
-      </div>
-      <div class="card">
-        <img src="shot3.png" alt="שוט 3 — תזונה">
-        <div class="body">
-          <div class="tag">סצנה · 4ש'</div>
-          <div class="cap">"אוכלים מספיק חלבון — השריר מוגן"</div>
-          <div class="desc">צלחת מאוזנת: עוף, אורז, ירק. אור-צד חם, מראה פרימיום.</div>
-        </div>
-      </div>
+      <div class="card"><img src="shot1.png" alt="וו">
+        <div class="body"><div class="tag">🎣 וו · 3ש'</div><div class="cap">"קרדיו אוכל לך את השריר?"</div><div class="desc">עומד ליד ההליכון, מבט ספק.</div></div></div>
+      <div class="card"><img src="shot2.png" alt="ריצה">
+        <div class="body"><div class="tag">סצנה · 4ש'</div><div class="cap">"קרדיו נינוח לא שורף שריר"</div><div class="desc">רץ בקצב נינוח, פונה קדימה.</div></div></div>
+      <div class="card"><img src="shot3.png" alt="תזונה">
+        <div class="body"><div class="tag">סצנה · 4ש'</div><div class="cap">"אוכלים מספיק חלבון — השריר מוגן"</div><div class="desc">צלחת מאוזנת עם אדים.</div></div></div>
     </div>
 
     <div class="foot">Familia · <b>כוח של משפחה</b> · @familia_fitness_coach</div>
