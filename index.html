@@ -262,9 +262,9 @@ input[type=password]:focus{border-color:var(--gold1)}
   function stat(n,l){return '<div class="stat"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';}
 
   function renderCarousels(){
-    var list=DATA.posts||[];
-    var html='<div class="page"><div class="ptitle">קרוסלות</div><div class="psub">'+list.length+' קרוסלות · לחץ לדפדוף ב-5 השקופיות</div>';
-    if(!list.length)html+='<div class="empty">אין קרוסלות.</div>';
+    var list=(DATA.posts||[]).filter(function(p){return (p.status||'')!=='posted';});
+    var html='<div class="page"><div class="ptitle">קרוסלות</div><div class="psub">'+list.length+' קרוסלות במלאי · לחץ לדפדוף · "הושלם" אחרי שהעלית</div>';
+    if(!list.length)html+='<div class="empty">אין קרוסלות במלאי — הכול הועלה! 🎉</div>';
     list.forEach(function(p,idx){
       var img=p.images&&p.images.length?'<img loading="lazy" src="'+esc(p.images[0])+'" alt="">':'<div class="noimg">אין עיצוב עדיין</div>';
       var dots=p.images&&p.images.length>1?'<div class="dots-mini">'+p.images.slice(0,5).map(function(){return '<i></i>';}).join('')+'</div>':'';
@@ -276,7 +276,9 @@ input[type=password]:focus{border-color:var(--gold1)}
           (p.images&&p.images.length?'<span class="cnt-badge">&#9783; '+p.images.length+' שקופיות</span>':'')+dots+'</div>'+
         '<div class="body"><div class="badges">'+pillarTag(p.pillar)+statusTag(p.status)+'<span class="date">'+fmtDate(p.target_date)+'</span></div>'+
         '<h2>'+esc(p.title||'')+'</h2>'+(p.hook?'<p class="hook">'+esc(p.hook)+'</p>':'')+capHtml+
-        (tags?'<div class="tags">'+tags+'</div>':'')+'</div></article>';
+        (tags?'<div class="tags">'+tags+'</div>':'')+
+        '<button onclick="markPosted(\''+p.slug+'\',this)" style="margin-top:12px;width:100%;font-family:inherit;font-size:14px;font-weight:800;border:0;border-radius:11px;padding:12px;cursor:pointer;background:linear-gradient(135deg,#2ecc71,#22a35a);color:#fff">✓ סמן שהועלה — הושלם</button>'+
+        '</div></article>';
     });
     html+='</div>';main.innerHTML=html;
   }
@@ -382,6 +384,19 @@ input[type=password]:focus{border-color:var(--gold1)}
         }).catch(function(){setTimeout(poll,5000);});
       })();
     }).catch(function(e){btn.disabled=false;btn.textContent='🔄 רנדר תמונה זו מחדש';msg.textContent='שגיאה: '+e.message;});
+  };
+  window.markPosted=function(slug,btn){
+    if(!slug)return;
+    if(!confirm('לסמן את הקרוסלה כהועלתה? היא תיעלם מהמלאי.'))return;
+    btn.disabled=true;btn.textContent='מסמן…';
+    apiAction({action:'mark_posted',slug:slug}).then(function(r){
+      if(r&&r.ok){
+        (DATA.posts||[]).forEach(function(p){if(p.slug===slug)p.status='posted';});
+        var card=btn.closest('article.card');
+        if(card){card.style.transition='opacity .3s';card.style.opacity='0';setTimeout(function(){renderCarousels();},320);}
+        else renderCarousels();
+      }else{btn.disabled=false;btn.textContent='✓ סמן שהועלה — הושלם';alert('שגיאה: '+((r&&r.error)||'נסה שוב'));}
+    }).catch(function(e){btn.disabled=false;btn.textContent='✓ סמן שהועלה — הושלם';alert('שגיאה: '+e.message);});
   };
   // swipe
   var sx=null;
