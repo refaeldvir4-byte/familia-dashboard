@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Familia · שליטה">
+<meta name="theme-color" content="#050409">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<title>Familia · מרכז-שליטה</title>
+<style>
+  :root{
+    --gold:#c9a84c; --gold2:#f0d080; --ink:#050409; --ink2:#0b0b14;
+    --panel:#11111c; --panel2:#161624; --line:#2a2a3d; --txt:#e9e7df; --dim:#9a97a8;
+    --live:#4ade80; --active:#f0d080; --prog:#fbbf24; --ready:#38bdf8; --blocked:#f87171; --idea:#c084fc; --archive:#7a7a88;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--ink);
+    color:var(--txt);font-family:"Heebo","Segoe UI",system-ui,Arial,sans-serif}
+  #viewport{position:fixed;inset:0;overflow:hidden;touch-action:none;cursor:grab;
+    background:radial-gradient(1200px 800px at 60% 40%, #12101c 0%, var(--ink) 70%)}
+  #viewport.grabbing{cursor:grabbing}
+  #world{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+  #links{position:absolute;top:0;left:0;overflow:visible;pointer-events:none}
+  .gframe{position:absolute;border:1.5px solid rgba(201,168,76,.18);border-radius:26px;
+    background:rgba(255,255,255,.012);box-shadow:inset 0 0 60px rgba(201,168,76,.04)}
+  .glabel{position:absolute;font-weight:800;font-size:22px;letter-spacing:.3px;
+    padding:2px 10px;white-space:nowrap;text-shadow:0 2px 10px #000}
+  .node{position:absolute;width:230px;background:linear-gradient(160deg,var(--panel2),var(--panel));
+    border:1px solid var(--line);border-radius:15px;padding:11px 13px 12px;cursor:pointer;
+    box-shadow:0 10px 26px rgba(0,0,0,.45);transition:border-color .15s,transform .12s,box-shadow .15s}
+  .node:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.6)}
+  .node.dim{opacity:.28;filter:grayscale(.4)}
+  .node.sel{border-color:var(--gold2);box-shadow:0 0 0 2px var(--gold2),0 16px 40px rgba(0,0,0,.7)}
+  .node .top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+  .node .ic{font-size:20px;line-height:1}
+  .node .ttl{font-weight:800;font-size:15px;flex:1;line-height:1.2}
+  .node .sub{font-size:12px;color:var(--dim);line-height:1.35;min-height:16px}
+  .node .dot{width:9px;height:9px;border-radius:50%;flex:none;box-shadow:0 0 8px currentColor}
+  .s-live{color:var(--live)} .s-active{color:var(--active)} .s-prog{color:var(--prog)}
+  .s-ready{color:var(--ready)} .s-blocked{color:var(--blocked)} .s-idea{color:var(--idea)} .s-archive{color:var(--archive)}
+  .node .agn{margin-top:7px;display:flex;flex-wrap:wrap;gap:4px}
+  .node .chip{font-size:10px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);
+    color:var(--gold2);border-radius:20px;padding:1px 7px}
+  /* HUD */
+  #hud{position:fixed;top:0;right:0;left:0;display:flex;align-items:center;gap:10px;
+    padding:12px 16px;pointer-events:none;z-index:5}
+  #hud .brand{font-weight:900;font-size:19px;color:var(--gold2);text-shadow:0 2px 10px #000}
+  #hud .brand small{display:block;font-weight:600;font-size:11px;color:var(--dim);letter-spacing:3px}
+  #hud .spacer{flex:1}
+  #search{pointer-events:auto;background:var(--panel);border:1px solid var(--line);color:var(--txt);
+    border-radius:20px;padding:8px 14px;font-size:14px;width:min(46vw,240px);font-family:inherit}
+  #search::placeholder{color:var(--dim)}
+  #legend{position:fixed;bottom:14px;right:14px;background:rgba(11,11,20,.8);backdrop-filter:blur(6px);
+    border:1px solid var(--line);border-radius:14px;padding:9px 12px;font-size:12px;z-index:5;max-width:44vw}
+  #legend b{color:var(--gold2);display:block;margin-bottom:5px;font-size:12px}
+  #legend .row{display:flex;align-items:center;gap:6px;margin:3px 0;color:var(--dim)}
+  #legend .row i{width:9px;height:9px;border-radius:50%;display:inline-block}
+  #tools{position:fixed;bottom:14px;left:14px;display:flex;gap:8px;z-index:5}
+  #tools button{pointer-events:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);
+    background:var(--panel);color:var(--gold2);font-size:20px;font-weight:800;cursor:pointer}
+  #tools button:active{background:var(--panel2)}
+  /* detail panel */
+  #detail{position:fixed;top:0;bottom:0;left:0;width:min(92vw,380px);z-index:20;
+    background:linear-gradient(180deg,var(--panel2),var(--ink2));border-inline-end:1px solid var(--gold);
+    box-shadow:12px 0 40px rgba(0,0,0,.6);transform:translateX(-105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);
+    display:flex;flex-direction:column;padding:20px 20px 24px;overflow:auto}
+  #detail.open{transform:none}
+  #detail .x{position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);
+    background:var(--panel);color:var(--txt);font-size:18px;cursor:pointer}
+  #detail .dic{font-size:40px}
+  #detail h2{margin:6px 0 2px;font-size:23px;color:var(--gold2)}
+  #detail .dstatus{font-size:13px;font-weight:700;margin-bottom:2px}
+  #detail .dsub{color:var(--dim);font-size:14px;margin-bottom:14px;line-height:1.5}
+  #detail h3{font-size:12px;color:var(--gold);letter-spacing:1px;margin:16px 0 7px;text-transform:uppercase}
+  #detail ul{margin:0;padding-inline-start:18px}
+  #detail li{margin:5px 0;font-size:14px;line-height:1.5}
+  #detail .link{display:inline-block;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);
+    color:var(--gold2);border-radius:20px;padding:4px 11px;margin:3px 4px 0 0;font-size:13px;cursor:pointer}
+  #hint{position:fixed;top:54px;left:50%;transform:translateX(-50%);color:var(--dim);font-size:12px;z-index:4;
+    background:rgba(11,11,20,.7);padding:5px 12px;border-radius:20px;border:1px solid var(--line);
+    transition:opacity .5s;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="viewport">
+  <div id="world">
+    <svg id="links"></svg>
+  </div>
+</div>
+
+<div id="hud">
+  <div class="brand">Familia · מרכז-שליטה<small>COMMAND CENTER</small></div>
+  <div class="spacer"></div>
+  <input id="search" placeholder="חיפוש בצמתים…" autocomplete="off">
+</div>
+<div id="hint">גררו להזזה · צביטה/גלגלת לזום · הקישו על צומת לפרטים</div>
+
+<div id="legend"></div>
+<div id="tools">
+  <button id="zin" title="זום +">＋</button>
+  <button id="zout" title="זום −">−</button>
+  <button id="fit" title="התאמה למסך">⤢</button>
+</div>
+
+<aside id="detail">
+  <button class="x" onclick="closeDetail()">✕</button>
+  <div class="dic" id="d-ic"></div>
+  <h2 id="d-ttl"></h2>
+  <div class="dstatus" id="d-status"></div>
+  <div class="dsub" id="d-sub"></div>
+  <div id="d-body"></div>
+</aside>
+
+<script>
+/* ============================= DATA ============================= */
+const STATUS={live:['s-live','חי ועובד','var(--live)'],active:['s-active','פעיל','var(--active)'],
+  prog:['s-prog','בתהליך','var(--prog)'],ready:['s-ready','מוכן','var(--ready)'],
+  blocked:['s-blocked','חסום','var(--blocked)'],idea:['s-idea','רעיון/מאגר','var(--idea)'],
+  archive:['s-archive','ארכיון','var(--archive)']};
+
+// group anchors on the plane (top-left of each cluster) + columns + color
+const GROUPS={
+  academy :{label:'🎓 האקדמיה — מוצר-הדגל', x:1360,y:1120, cols:3, color:'#f0d080'},
+  core    :{label:'🏭 familiaposts — הליבה', x:120,  y:1120, cols:2, color:'#c9a84c'},
+  pipeline:{label:'⚙️ פייפליינים', x:1470, y:120,  cols:2, color:'#4ade80'},
+  engine  :{label:'🖥️ מנוע AI · RTX 5090', x:120,  y:120,  cols:2, color:'#c084fc'},
+  apps    :{label:'🌐 אפליקציות', x:2560, y:120,  cols:1, color:'#38bdf8'},
+  external:{label:'🧰 כלים חיצוניים', x:2560, y:800,  cols:1, color:'#fbbf24'},
+  analytics:{label:'📊 אנליטיקה', x:2560, y:1380, cols:1, color:'#38bdf8'},
+  agents  :{label:'🤖 סוכני AI + צוות', x:120,  y:2020, cols:3, color:'#f0d080'},
+  notion  :{label:'🗂️ Notion OS', x:1470, y:2020, cols:2, color:'#4ade80'},
+  archive :{label:'🗄️ ארכיון', x:2560, y:2020, cols:1, color:'#7a7a88'},
+};
+
+const NODES=[
+ // ---- ACADEMY (flagship) ----
+ {id:'academy-product',group:'academy',icon:'🎓',status:'active',title:'מוצר 3-שכבתי',sub:'פיד → אקדמיה → ליווי',
+  details:['הפיד מביא · האקדמיה מלמדת חינם · הליווי סוגר','לא ערימת-רילים — מסע-שינוי','דלת-כניסה: עמוד "מתחילים כאן"'],connections:['academy-pilot','landing','content-pipeline']},
+ {id:'academy-pilot',group:'academy',icon:'🎬',status:'ready',title:'פיילוט — 12 סרטונים',sub:'12/12 תוכן נעול · 12/12 דפי-הפקה',
+  details:['3 שבועות: פחד→מקצועיות→עצמאות','כל סרטון: 3 מפגשים (דיבור/כיסוי/עריכה)','נכתבו 9 דפי-הפקה חדשים (14.7)'],connections:['academy-format-gate','academy-assets','teleprompter']},
+ {id:'academy-format-gate',group:'academy',icon:'🔴',status:'prog',title:'Format Gate (14.7)',sub:'לאמת פורמט לפני סקייל',
+  details:['אחרי ביקורת ChatGPT: טוקינג-הד צפוי להיחנק','לצלם רק #2 ב-3 גרסאות → Trial Reel','לפצל כל נושא: פיד 15-25ש\' / אקדמיה 40-90ש\''],connections:['data-finding','chatgpt']},
+ {id:'academy-catalog',group:'academy',icon:'📚',status:'idea',title:'קטלוג 309',sub:'מאגר-הרעיונות',
+  details:['סטוריבורד 309 בסדר אבסולוטי','חזון 500+ · 24 שיעורי-ליבה / 6 מודולים','שולפים ממנו את המסלול'],connections:['academy-pilot']},
+ {id:'academy-assets',group:'academy',icon:'🖼️',status:'ready',title:'נכסים (14.7)',sub:'קרוסלה + 12 קאברים',
+  details:['קרוסלת "מה ללבוש" (6 שקופיות)','12 קאברים זהב-על-שחור','רונדרו ב-render_week/make_cover'],connections:['render-engine']},
+ {id:'academy-voice',group:'academy',icon:'🎙️',status:'live',title:'קול-האקדמיה',sub:'9 בדיקות · גוף-שלישי',
+  details:['גוף-שלישי תמיד · זרימה מעל הכל','1-2 דימויים מקס\' · חתימה קבועה','שער-9-הביקורות (בהירות+התקדמות)'],connections:['team-creative']},
+
+ // ---- CORE (familiaposts) ----
+ {id:'familiaposts',group:'core',icon:'🏭',status:'live',title:'familiaposts',sub:'הליבה · מפעל-התוכן',
+  details:['GitHub: familia-content-factory','ריפו יחיד (אקדמיה מוזגה 14.7)','.env מקומי בלבד'],connections:['render-engine','strategy','supabase','control-center']},
+ {id:'render-engine',group:'core',icon:'🎨',status:'live',title:'מנוע רינדור',sub:'קרוסלות/קאברים/רילים (PIL)',
+  details:['render_week.py · make_cover.py','זהב-על-שחור · Heebo RTL (bidi)','captions_manual_pos (קריוקי)'],connections:['comfyui','brand']},
+ {id:'reels-pipeline',group:'core',icon:'📼',status:'live',title:'פייפליין רילים',sub:'כתוביות+הוק+זום+B-roll+קאבר',
+  details:['4 רילים הופקו מקצה-לקצה','לוגו logo-default ימין 12%','B-roll אינסֶט זהב'],connections:['render-engine','render-pipeline']},
+ {id:'control-center',group:'core',icon:'🕹️',status:'live',title:'מרכז-שליטה',sub:'localhost:8800',
+  details:['proxy ל-Supabase (מפתח לא לדפדפן)','אישור/עריכה/תזמון'],connections:['supabase']},
+ {id:'strategy',group:'core',icon:'📑',status:'live',title:'אסטרטגיה (docs)',sub:'virality/voice/playbooks',
+  details:['מנוע-ויראליות · voice-rafael','broll-playbook · metaphor-playbook','review-integration (14.7)'],connections:['virality-engine']},
+ {id:'brand',group:'core',icon:'🦁',status:'live',title:'נכסי-מותג',sub:'לוגו + גופנים',
+  details:['וורדמארק "Familia FITNESS" זהב','Heebo (עברית) + Playfair (לטינית)','מסקוט: אריה "ארי"'],connections:[]},
+ {id:'n8n',group:'core',icon:'🔗',status:'blocked',title:'n8n Workflows',sub:'פרסום/מדדים/מתזמן',
+  details:['3 workflows כתובים ונבדקו','Docker localhost:5678','חסום: חסרים מפתחות Meta'],connections:[]},
+ {id:'supabase',group:'core',icon:'🗄️',status:'live',title:'Supabase',sub:'DB + Storage',
+  details:['טבלאות: ideas→scripts→assets→posts','Storage לרינדורים (URL ציבורי)','SERVICE_KEY צד-שרת בלבד'],connections:['content-pipeline']},
+
+ // ---- PIPELINES ----
+ {id:'content-pipeline',group:'pipeline',icon:'⚙️',status:'active',title:'פייפליין תוכן',sub:'ideas → scripts → assets → posts',
+  details:['שרשרת Supabase','מנוע-ויראליות כשלב-חובה','שער-איכות תזונה+טענות חוסם'],connections:['virality-engine','supabase']},
+ {id:'render-pipeline',group:'pipeline',icon:'🎞️',status:'live',title:'פייפליין B-roll',sub:'Flux → Wan2.2 → inset זהב',
+  details:['Flux stills (realism LoRA)','Wan2.2 i2v הגדרות HERO','הרכבת inset ממוסגר-זהב'],connections:['flux','wan22']},
+ {id:'virality-engine',group:'pipeline',icon:'🚀',status:'live',title:'מנוע ויראליות',sub:'5-ביטים · בנק-הוקים · ניקוד',
+  details:['שלד 5-ביטים · כרטיס-ניקוד (סף)','שכבת קול-רפאל + פלפל','עכשוויות = בונוס'],connections:['strategy']},
+
+ // ---- ENGINE (ComfyUI / 5090) ----
+ {id:'comfyui',group:'engine',icon:'🖥️',status:'live',title:'ComfyUI (RTX 5090)',sub:'מנוע-AI מקומי',
+  details:['תמונות · וידאו · LoRA','python_embeded (PIL/bidi) לרינדור','run_nvidia_gpu.bat'],connections:['flux','wan22']},
+ {id:'flux',group:'engine',icon:'🌫️',status:'live',title:'Flux (stills)',sub:'flux1-dev-fp8',
+  details:['+ LoRA familia-realism @0.75','steps 30-32 · guidance 2.8','סטילס פוטו-ריאליסטיים'],connections:['lora-realism']},
+ {id:'wan22',group:'engine',icon:'🎥',status:'live',title:'Wan2.2 i2v',sub:'מנוע-התנועה (HERO)',
+  details:['high+low 14B · 848×480×49f','24 צעדים split-12 · cfg4 · uni_pc','photo-real אנושי'],connections:[]},
+ {id:'wan-animate',group:'engine',icon:'🎭',status:'ready',title:'Wan2.2 Animate',sub:'motion-transfer (לא בשימוש)',
+  details:['מותקן (17GB) · לא מחובר','להזרים תנועה מסרטון-ייחוס','מצוין לסילואטות-טכניקה'],connections:[]},
+ {id:'lora-rffl',group:'engine',icon:'🧑',status:'ready',title:'LoRA rffl',sub:'פני רפאל',
+  details:['טריגר rffl · v3b/v6 checkpoints','לבחור checkpoint (_lora_eval)','לסטילס-פנים'],connections:[]},
+ {id:'lora-realism',group:'engine',icon:'✨',status:'live',title:'LoRA realism',sub:'familia-realism',
+  details:['בשימוש בסטילס @0.75'],connections:[]},
+ {id:'hunyuan',group:'engine',icon:'⬇️',status:'blocked',title:'HunyuanVideo 1.5',sub:'שדרוג-עתיד',
+  details:['קבצי-תמיכה staged','חסר טרנספורמר (~26GB)','עדיפות נמוכה (Wan מכסה)'],connections:[]},
+ {id:'electron-app',group:'engine',icon:'💻',status:'prog',title:'אפליקציית מיתוג',sub:'Electron · HeyGen→ריל ממותג',
+  details:['app/ · רץ headless (electron-as-node)','כתוביות+לוגו+זום+מוזיקה','imageio-ffmpeg עם libass'],connections:['reels-pipeline','heygen']},
+ {id:'heygen',group:'engine',icon:'🗣️',status:'active',title:'אווטאר HeyGen',sub:'Talking Photo + קול משובט',
+  details:['~80% זהות-קול · שימש רילים 1-2','מ-7.8 רפאל מנפיק וידאו בעצמו','צריך רוטציית API key'],connections:['reels-pipeline']},
+
+ // ---- APPS ----
+ {id:'dashboard',group:'apps',icon:'☁️',status:'live',title:'familia-dashboard',sub:'אישור-תוכן ענן',
+  details:['GitHub Pages · סיסמה familia2026','5 לשוניות · regen job','ריפו נפרד'],connections:['supabase']},
+ {id:'teleprompter',group:'apps',icon:'🎥',status:'live',title:'טלפרומפטר PWA',sub:'Vercel · הקלטה+כתוביות',
+  details:['HD 1080p · smart-sync (Whisper)','14.7: ייבוא + קיבוץ-סדרה','+ 12 תסריטי-אקדמיה'],connections:['academy-pilot']},
+ {id:'landing',group:'apps',icon:'🎬',status:'live',title:'familia-landing',sub:'דף-נחיתה קולנועי',
+  details:['Vercel · 141 פריימים סרט','14.7: כרטיס-אקדמיה + CTA','ממחזר landing_waitlist'],connections:['academy-product']},
+
+ // ---- EXTERNAL ----
+ {id:'chatgpt',group:'external',icon:'🧠',status:'active',title:'ChatGPT Plus',sub:'צוות-אדום + מחקר',
+  details:['ביקורת-קונטרה (14.7) → Format Gate','Deep Research · Canvas · Agent','קלוד כותב פרומט → רפאל מריץ'],connections:['academy-format-gate']},
+ {id:'gemini',group:'external',icon:'🔎',status:'active',title:'Gemini AI Pro',sub:'מחקר עמוק + וידאו',
+  details:['Deep Research · NotebookLM','ניתוח-וידאו · Veo · Gems','מזין טרנדים + אימות-עובדות'],connections:['content-pipeline']},
+
+ // ---- ANALYTICS ----
+ {id:'metricool',group:'analytics',icon:'📊',status:'live',title:'Metricool',sub:'3 רשתות',
+  details:['IG + טיקטוק + יוטיוב','קלוד קורא ישיר דרך כרום','% View-rate (3ש\') = ההוק'],connections:['data-finding']},
+ {id:'ig-insights',group:'analytics',icon:'📈',status:'prog',title:'IG Insights + UTM',sub:'מדידה מלאה (לבנות)',
+  details:['Metricool לבד לא מספיק','זמן-צפייה + %-צפייה + שמירות/1000','קישורי-UTM לעמוד'],connections:[]},
+ {id:'data-finding',group:'analytics',icon:'🎯',status:'live',title:'תובנת-על',sub:'צילום-אמת מנצח',
+  details:['אמת דינמי 41-53% מול טוקינג-הד 13-17%','skip-rate = מנבא #1 של חשיפה','שמירות ≈ אפס = חולשה'],connections:['reels-published']},
+ {id:'reels-published',group:'analytics',icon:'✅',status:'live',title:'רילים 1-4 פורסמו',sub:'IG+טיקטוק+שורטס',
+  details:['זריקות · חזקות-לא-רזות','חוק-ה-1% · אימון-כואב','ממתינים למדדים'],connections:[]},
+
+ // ---- AGENTS ----
+ {id:'claude-coo',group:'agents',icon:'👑',status:'active',title:'Claude COO',sub:'המנכ״לית / מתזמרת',
+  details:['מנהלת ביצוע · מתעדת · יוזמת','קוראת COO_STATUS ראשונה','מגייסת סוכנים לפי צורך'],connections:['claude-subagents','familiaposts']},
+ {id:'claude-subagents',group:'agents',icon:'🐝',status:'active',title:'סוכני-קלוד',sub:'fan-out מקבילי',
+  details:['היום: 3 חוקרים + 3 כותבי דפי-הפקה','+ 3 ממפי מרכז-השליטה','עבודה מקבילה, סינתזה מרכזית'],connections:['academy-pilot']},
+ {id:'team-creative',group:'agents',icon:'✍️',status:'active',title:'צוות יצירתי',sub:'פרסונות system-prompt',
+  details:['קופירייטר · מומחה-תזונה · content-lead','שער-איכות תזונה+טענות','content-factory/team'],connections:['content-pipeline']},
+ {id:'prompt-studio',group:'agents',icon:'🎬',status:'active',title:'צוות וידאו (9)',sub:'סטודיו-פרומפטים',
+  details:['במאי · צלם · תנועה · מאמן-תרגיל','אמן · רציפות · מהנדסים · QA','שיתוף per-shot'],connections:['render-pipeline']},
+ {id:'growth-council',group:'agents',icon:'📣',status:'active',title:'מועצת-צמיחה',sub:'IG / TikTok / מתכנת',
+  details:['סוכנים 13/14/15','growth-playbook 2026','3 סדרות קבועות · TikTok-first'],connections:['content-pipeline']},
+
+ // ---- NOTION ----
+ {id:'notion-os',group:'notion',icon:'🗂️',status:'live',title:'Familia OS',sub:'מרכז-פיקוד Notion',
+  details:['בנוי וחי (מ-5.7)','קונקטור פעיל מ-Claude Code','מראה-אנושית לצוות'],connections:['notion-dbs']},
+ {id:'notion-dbs',group:'notion',icon:'🧩',status:'live',title:'מסדי-נתונים',sub:'משימות/תסריטים/צינור/אנליטיקה',
+  details:['✅ משימות · 📝 תסריטים','🔄 צינור-תוכן · 📈 אנליטיקה','17 תסריטים סונכרנו'],connections:[]},
+
+ // ---- ARCHIVE ----
+ {id:'archive-voice',group:'archive',icon:'🔇',status:'archive',title:'ניסויי-קול',sub:'Zonos / BlueTTS',
+  details:['שיבוט-קול עברי (מוקפא)','HeyGen נבחר בינתיים'],connections:[]},
+ {id:'archive-exp',group:'archive',icon:'🧪',status:'archive',title:'ניסויים',sub:'physique/WEBVID/dress',
+  details:['לא בפייפליין הפעיל'],connections:[]},
+ {id:'archive-hist',group:'archive',icon:'📦',status:'archive',title:'תיקיות היסטוריות',sub:'V4 / פאמיליה / agent',
+  details:['ארכיון — לא לגעת'],connections:[]},
+];
+
+/* ============================= LAYOUT ============================= */
+const NW=230, NH=118, GAPX=26, GAPY=24, PAD=30, LBL=40;
+const byId={};
+function layout(){
+  const groups={};
+  NODES.forEach(n=>{(groups[n.group]=groups[n.group]||[]).push(n)});
+  for(const g in groups){
+    const G=GROUPS[g], cols=G.cols;
+    groups[g].forEach((n,i)=>{
+      const c=i%cols, r=(i/cols|0);
+      n.x=G.x+PAD+c*(NW+GAPX);
+      n.y=G.y+LBL+PAD+r*(NH+GAPY);
+      n.w=NW; n.h=NH; byId[n.id]=n;
+    });
+    // frame bounds
+    const xs=groups[g].map(n=>n.x), ys=groups[g].map(n=>n.y);
+    G.fx=Math.min(...xs)-PAD; G.fy=Math.min(...ys)-PAD-LBL;
+    G.fw=(Math.max(...xs)+NW+PAD)-G.fx; G.fh=(Math.max(...ys)+NH+PAD)-G.fy;
+  }
+}
+layout();
+
+/* ============================= RENDER ============================= */
+const world=document.getElementById('world'), svg=document.getElementById('links'), vp=document.getElementById('viewport');
+let planeW=0,planeH=0;
+for(const g in GROUPS){planeW=Math.max(planeW,GROUPS[g].fx+GROUPS[g].fw+60);planeH=Math.max(planeH,GROUPS[g].fy+GROUPS[g].fh+60)}
+svg.setAttribute('width',planeW);svg.setAttribute('height',planeH);
+svg.setAttribute('viewBox',`0 0 ${planeW} ${planeH}`);
+
+// group frames + labels
+for(const g in GROUPS){const G=GROUPS[g];
+  const f=document.createElement('div');f.className='gframe';
+  f.style.cssText=`left:${G.fx}px;top:${G.fy}px;width:${G.fw}px;height:${G.fh}px;border-color:${hex2rgba(G.color,.22)}`;
+  world.appendChild(f);
+  const l=document.createElement('div');l.className='glabel';l.textContent=G.label;
+  l.style.cssText=`left:${G.fx+16}px;top:${G.fy+6}px;color:${G.color}`;
+  world.appendChild(l);
+}
+// links (draw first, behind nodes)
+const linkEls=[];
+NODES.forEach(n=>{(n.connections||[]).forEach(t=>{const m=byId[t];if(!m)return;
+  const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+  const x1=n.x+NW/2,y1=n.y+NH/2,x2=m.x+NW/2,y2=m.y+NH/2;
+  const dx=(x2-x1)*0.4;
+  p.setAttribute('d',`M${x1},${y1} C${x1+dx},${y1} ${x2-dx},${y2} ${x2},${y2}`);
+  p.setAttribute('fill','none');p.setAttribute('stroke','rgba(201,168,76,.28)');p.setAttribute('stroke-width','1.6');
+  svg.appendChild(p);linkEls.push({p,a:n.id,b:t});
+})});
+// nodes
+NODES.forEach(n=>{
+  const el=document.createElement('div');el.className='node';el.dataset.id=n.id;
+  el.style.cssText=`left:${n.x}px;top:${n.y}px;width:${NW}px`;
+  const st=STATUS[n.status];
+  el.innerHTML=`<div class="top"><span class="ic">${n.icon}</span><span class="ttl">${n.title}</span>
+     <span class="dot ${st[0]}">●</span></div><div class="sub">${n.sub||''}</div>`;
+  el.addEventListener('click',ev=>{ev.stopPropagation();openDetail(n.id)});
+  world.appendChild(el);n.el=el;
+});
+
+function hex2rgba(h,a){const n=parseInt(h.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`}
+
+/* ============================= PAN / ZOOM ============================= */
+let tx=0,ty=0,k=1;const MINK=0.2,MAXK=2.2;
+function apply(){world.style.transform=`translate(${tx}px,${ty}px) scale(${k})`}
+function fit(){
+  const vw=innerWidth,vh=innerHeight;
+  k=Math.min(vw/(planeW+80),vh/(planeH+80),1);k=Math.max(k,MINK);
+  tx=(vw-planeW*k)/2; ty=(vh-planeH*k)/2 + 10; apply();
+}
+fit();addEventListener('resize',()=>{});
+
+const pts=new Map();let mode=null,last=null,pinch0=null,downNode=null,downXY=null,moved=false;
+vp.addEventListener('pointerdown',e=>{
+  vp.setPointerCapture(e.pointerId);
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  moved=false;downXY={x:e.clientX,y:e.clientY};
+  const nodeEl=e.target.closest('.node');
+  if(pts.size===2){mode='pinch';const p=[...pts.values()];
+    pinch0={d:dist(p[0],p[1]),mx:(p[0].x+p[1].x)/2,my:(p[0].y+p[1].y)/2,k,tx,ty};downNode=null;}
+  else if(nodeEl){mode='tap';downNode=nodeEl;}
+  else{mode='pan';last={x:e.clientX,y:e.clientY};vp.classList.add('grabbing');}
+});
+vp.addEventListener('pointermove',e=>{
+  if(!pts.has(e.pointerId))return;
+  pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(downXY&&Math.hypot(e.clientX-downXY.x,e.clientY-downXY.y)>8)moved=true;
+  if(mode==='pinch'&&pts.size>=2){const p=[...pts.values()];const d=dist(p[0],p[1]);
+    let nk=clamp(pinch0.k*d/pinch0.d,MINK,MAXK);
+    // zoom around initial midpoint
+    tx=pinch0.mx-(pinch0.mx-pinch0.tx)*(nk/pinch0.k);
+    ty=pinch0.my-(pinch0.my-pinch0.ty)*(nk/pinch0.k);
+    k=nk;apply();
+  } else if(mode==='pan'&&last){tx+=e.clientX-last.x;ty+=e.clientY-last.y;last={x:e.clientX,y:e.clientY};apply();}
+  else if(mode==='tap'&&moved){mode='pan';last={x:e.clientX,y:e.clientY};downNode=null;vp.classList.add('grabbing')}
+});
+function endPtr(e){
+  if(mode==='tap'&&downNode&&!moved){/* click handler on node fires */}
+  pts.delete(e.pointerId);
+  if(pts.size<2&&mode==='pinch'){mode=pts.size===1?'pan':null;const r=[...pts.values()][0];if(r)last={x:r.x,y:r.y}}
+  if(pts.size===0){mode=null;last=null;vp.classList.remove('grabbing')}
+}
+vp.addEventListener('pointerup',endPtr);vp.addEventListener('pointercancel',endPtr);
+vp.addEventListener('click',()=>{});// background click closes handled below
+vp.addEventListener('wheel',e=>{e.preventDefault();
+  const f=e.deltaY<0?1.12:1/1.12;let nk=clamp(k*f,MINK,MAXK);
+  tx=e.clientX-(e.clientX-tx)*(nk/k);ty=e.clientY-(e.clientY-ty)*(nk/k);k=nk;apply();
+},{passive:false});
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function zoomBtn(f){let nk=clamp(k*f,MINK,MAXK);const cx=innerWidth/2,cy=innerHeight/2;
+  tx=cx-(cx-tx)*(nk/k);ty=cy-(cy-ty)*(nk/k);k=nk;apply()}
+document.getElementById('zin').onclick=()=>zoomBtn(1.25);
+document.getElementById('zout').onclick=()=>zoomBtn(.8);
+document.getElementById('fit').onclick=fit;
+
+/* ============================= DETAIL PANEL ============================= */
+const D=document.getElementById('detail');
+function openDetail(id){const n=byId[id];if(!n)return;
+  NODES.forEach(m=>m.el.classList.remove('sel'));n.el.classList.add('sel');
+  document.getElementById('d-ic').textContent=n.icon;
+  document.getElementById('d-ttl').textContent=n.title;
+  const st=STATUS[n.status];const sEl=document.getElementById('d-status');
+  sEl.textContent='● '+st[1];sEl.style.color=st[2];
+  document.getElementById('d-sub').textContent=n.sub||'';
+  let h='';
+  if(n.details&&n.details.length){h+='<h3>מה יש בפנים</h3><ul>'+n.details.map(d=>`<li>${d}</li>`).join('')+'</ul>'}
+  const outs=(n.connections||[]).map(t=>byId[t]).filter(Boolean);
+  const ins=NODES.filter(m=>(m.connections||[]).includes(id));
+  const rel=[...new Set([...outs,...ins])];
+  if(rel.length){h+='<h3>מחובר אל</h3><div>'+rel.map(r=>`<span class="link" onclick="openDetail('${r.id}')">${r.icon} ${r.title}</span>`).join('')+'</div>'}
+  document.getElementById('d-body').innerHTML=h;
+  D.classList.add('open');
+  // highlight related links
+  linkEls.forEach(l=>l.p.setAttribute('stroke',(l.a===id||l.b===id)?'rgba(240,208,128,.9)':'rgba(201,168,76,.12)'));
+  NODES.forEach(m=>m.el.classList.toggle('dim',!(m.id===id||rel.some(r=>r.id===m.id))));
+}
+function closeDetail(){D.classList.remove('open');
+  NODES.forEach(m=>{m.el.classList.remove('sel','dim')});
+  linkEls.forEach(l=>l.p.setAttribute('stroke','rgba(201,168,76,.28)'));
+}
+vp.addEventListener('pointerdown',e=>{if(!e.target.closest('.node')&&D.classList.contains('open'))closeDetail()});
+
+/* ============================= SEARCH ============================= */
+document.getElementById('search').addEventListener('input',e=>{
+  const q=e.target.value.trim();
+  if(!q){NODES.forEach(n=>n.el.classList.remove('dim','sel'));return}
+  NODES.forEach(n=>{const hit=(n.title+' '+(n.sub||'')+' '+(n.details||[]).join(' ')).includes(q);
+    n.el.classList.toggle('dim',!hit);n.el.classList.toggle('sel',hit)});
+});
+
+/* ============================= LEGEND ============================= */
+document.getElementById('legend').innerHTML='<b>מקרא-סטטוס</b>'+
+  Object.entries(STATUS).map(([k,v])=>`<div class="row"><i style="background:${v[2]}"></i>${v[1]}</div>`).join('');
+
+// fade hint
+setTimeout(()=>{const h=document.getElementById('hint');h.style.opacity=0},4200);
+</script>
+</body>
+</html>
