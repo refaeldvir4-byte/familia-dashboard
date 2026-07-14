@@ -114,6 +114,7 @@ const GROUPS={
   apps    :{label:'🌐 אפליקציות ואתרים (לחיצים→פתיחה)', cols:2, color:'#38bdf8'},
   core    :{label:'🏭 familiaposts — הליבה', cols:2, color:'#c9a84c'},
   deliverables:{label:'🎬 התוצרים — העבודה עצמה (נפתח)', cols:4, color:'#f0d080'},
+  strat   :{label:'📋 אסטרטגיה ותוכן', cols:3, color:'#fbbf24'},
   pipeline:{label:'⚙️ פייפליינים', cols:2, color:'#4ade80'},
   engine  :{label:'🖥️ מנוע AI · RTX 5090', cols:2, color:'#c084fc'},
   agents  :{label:'🤖 סוכני AI + צוות', cols:2, color:'#f0d080'},
@@ -124,9 +125,10 @@ const GROUPS={
 };
 // which layout column each group sits in (auto-stacked, no overlap)
 const LAYOUT=[
-  ['engine','core','agents','notion'],
-  ['pipeline','academy','deliverables','archive'],
-  ['apps','products','external','analytics'],
+  ['engine','core','agents'],
+  ['pipeline','academy','deliverables'],
+  ['apps','products','strat'],
+  ['notion','external','analytics','archive'],
 ];
 const N=[
  // ACADEMY
@@ -206,6 +208,26 @@ const N=[
  ['archive-voice','archive','🔇','archive','ניסויי-קול','Zonos / BlueTTS',['שיבוט-קול עברי (מוקפא)','HeyGen נבחר'],[],''],
  ['archive-exp','archive','🧪','archive','ניסויים','physique/WEBVID/dress',['לא בפייפליין הפעיל'],[],''],
  ['archive-hist','archive','📦','archive','תיקיות היסטוריות','V4/פאמיליה/agent',['ארכיון — לא לגעת'],[],''],
+ // ---- v3 additions (audit 14.7) ----
+ ['familia-fitness-site','apps','🌐','live','אתר familia-fitness','אתר-מותג שלישי (Vercel)',['familia-fitness.vercel.app','גרסה מוקדמת/legacy'],['landing'],'https://familia-fitness.vercel.app'],
+ ['gallery-link','deliverables','🔗','live','דף לינק-בביו','קולנועי · "תכירו את המשפחה"',['3 דרכים להיכנס למשפחה','אנימציות-חשיפה'],['instagram'],DASH+'/link/'],
+ ['gallery-cardio','deliverables','🏃','live','ריל קרדיו','"קרדיו לא הורס שריר"',['ריל מוכן להצגה'],['reels-pipeline'],DASH+'/reel-cardio/'],
+ ['gallery-pinned','deliverables','📌','live','הפוסט הנעוץ','מוקאפ · "משפחה אחת"',['עיצוב פוסט-נעוץ'],['instagram'],DASH+'/welcome.html'],
+ ['gallery-highlights','deliverables','⭐','live','כיסויי Highlights','לאינסטגרם',['covers.html'],['brand'],DASH+'/covers.html'],
+ ['gallery-videornd','deliverables','🧪','live','מחקר מנועי-וידאו','Hunyuan מהיר/חד/שרשור',['5 עמודי-הוכחה','benchmarks וידאו-AI'],['wan22','hunyuan'],DASH+'/video-fast/'],
+ ['topic-bank','strat','🎯','ready','בנק-נושאים (129)','8 קהלי-יעד',['129 נושאים מתויגי-פילר','15 ⭐ ויראליים'],['content-pipeline'],''],
+ ['audience-playbook','strat','👥','ready','פלייבוק-קהלים','פלטפורמה+שעות+תמהיל',['לכל קהל בנפרד','טבלת טופ-10 ויראליים'],['topic-bank'],''],
+ ['launch-package','strat','🚀','ready','חבילת השקה','10 רילים לשבועיים',['לו"ז שידור','רחבים-חמים + המרה'],['content-pipeline'],''],
+ ['scripts-master','strat','📜','active','קובץ-אב תסריטים v4','17 תסריטים קנוניים',['עברו את המנוע','הגבוהים 96-97'],['virality-engine'],''],
+ ['idea-bank','strat','💡','ready','בנק רעיונות רילים','~40 רעיונות',['מאגר-רעיונות (7.4)'],['content-pipeline'],''],
+ ['voice-profile','strat','🎙️','active','DNA קול-רפאל','פרופיל + קורפוס',['7-9 בדיקות-קול','ציטוטים אמיתיים','שער-חובה בכתיבה'],['academy-voice','scripts-master'],''],
+ ['metaphor-playbook','strat','🖌️','active','מדריך מוטיבים','2-3 דימויים מקס',['מגובה-מחקר','עומס קוגניטיבי'],['voice-profile'],''],
+ ['viewer-boards','strat','📑','ready','לוחות-שיתוף','HTML לצוות/פלאפון',['production-book · pilot-board','week1-brief · academy-storyboard'],['academy-pilot'],''],
+ ['notion-hooks','notion','🎣','active','בנק-הוקים','מסד Notion',['הוקים שעבדו · לשליפה'],['notion-os'],'https://notion.so'],
+ ['notion-trends','notion','📡','active','ראדאר-טרנדים','"מה תופס עכשיו"',['טרנדים חיים בישראל','מזין את המנוע'],['notion-os','gemini'],'https://notion.so'],
+ ['notion-pricing','notion','💰','active','תמחור ומוניטיזציה','המודל העסקי',['מבנה-הכנסות','ליווי + אפליקציה'],['notion-os','coaching'],'https://notion.so'],
+ ['notion-roadmap','notion','🧭','active','בקלוג ומפת-דרכים','מה הלאה',['משימות + עדיפויות'],['notion-os'],'https://notion.so'],
+ ['eleven-tts','engine','🔊','active','ElevenLabs TTS','קול-ענן',['eleven_tts.py','חלופה ל-HeyGen/קול-מקומי'],['reels-pipeline'],''],
 ];
 // expand to objects
 const NODES=N.map(a=>({id:a[0],group:a[1],icon:a[2],status:a[3],title:a[4],sub:a[5],details:a[6],connections:a[7],url:a[8]}));
