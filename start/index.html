@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#050409">
+<title>מתחילים כאן · Familia Fitness</title>
+<meta name="description" content="תוכנית 30 הימים למתאמן המתחיל — בחינם. בדיוק מה לעשות מהאימון הראשון.">
+<style>
+  :root{--gold:#c9a84c;--gold2:#f0d080;--ink:#070610;--panel:#12111d;--line:#2a2a3c;--txt:#f1efe7;--dim:#a7a4b3;--wa:#25d366}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:
+    radial-gradient(900px 600px at 50% 8%, #16131f 0%, var(--ink) 68%);
+    color:var(--txt);font-family:"Heebo","Segoe UI",system-ui,Arial,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+  .wrap{max-width:560px;margin:0 auto;padding:44px 22px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .kick{color:var(--gold);font-weight:800;letter-spacing:4px;font-size:12px;text-transform:uppercase;text-align:center}
+  h1{font-size:clamp(28px,7vw,40px);line-height:1.15;text-align:center;margin:12px 0 6px;
+    background:linear-gradient(92deg,#fff 30%,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1 .free{display:block;background:linear-gradient(92deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{text-align:center;color:var(--dim);font-size:16px;max-width:400px;margin:0 auto 26px}
+  .benes{list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:12px}
+  .benes li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;font-size:16px}
+  .benes .ic{flex:none;font-size:22px}
+  .cta{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#05230f;
+    font-weight:800;font-size:19px;text-decoration:none;border-radius:16px;padding:17px;box-shadow:0 10px 30px rgba(37,211,102,.28)}
+  .cta:active{transform:translateY(1px)}
+  .cta svg{width:24px;height:24px;fill:#05230f}
+  .micro{text-align:center;color:var(--dim);font-size:13.5px;margin-top:12px}
+  .brandlock{text-align:center;margin-top:38px;color:var(--dim)}
+  .brandlock .wm{font-weight:900;color:var(--gold2);font-size:17px;letter-spacing:.5px}
+  .brandlock .sl{font-size:12.5px;letter-spacing:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">Familia Fitness</div>
+  <h1>מתחילים להתאמן?<span class="free">30 הימים הראשונים — בחינם</span></h1>
+  <p class="sub">תוכנית פשוטה למתאמן המתחיל: בדיוק מה לעשות, מהאימון הראשון — בלי לדעת כלום מראש.</p>
+
+  <ul class="benes">
+    <li><span class="ic">🗺️</span><div>בדיוק מה לעשות בכל אימון — צעד-אחר-צעד</div></li>
+    <li><span class="ic">🏠</span><div>בית או חדר כושר — מתאימים לך אישית</div></li>
+    <li><span class="ic">👨‍👩‍👦</span><div>ליווי יומי מהמשפחה, בוואטסאפ — בחינם</div></li>
+  </ul>
+
+  <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
+    שלחו "30" בוואטסאפ וקבלו את יום 1
+  </a>
+  <p class="micro">ללא ספאם · ליווי אמיתי מהמשפחה · תשובה מהירה</p>
+
+  <div class="brandlock">
+    <div class="wm">Familia Fitness</div>
+    <div class="sl">כוח של משפחה</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var PHONE="972546649909";
+  // source tracking: ?s=ig / ?s=tiktok / ?utm_source=...
+  var q=new URLSearchParams(location.search);
+  var src=(q.get("s")||q.get("utm_source")||"ישיר").toLowerCase();
+  var srcLabel={ig:"אינסטגרם",instagram:"אינסטגרם",tiktok:"טיקטוק",tt:"טיקטוק","ישיר":"ישיר"}[src]||src;
+  var msg=
+    "היי פמיליה! רוצה להתחיל את תוכנית 30 הימים 💪\n"+
+    "מתאמן/ת ב: בית / חדר כושר\n"+
+    "יכול/ה להתאמן: 2 / 3 פעמים בשבוע\n"+
+    "(מקור: "+srcLabel+")";
+  document.getElementById("cta").href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
+})();
+</script>
+</body>
+</html>
