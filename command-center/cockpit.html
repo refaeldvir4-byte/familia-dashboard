@@ -15,44 +15,51 @@
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--ink);color:var(--txt);font-family:"Heebo","Segoe UI",system-ui,Arial,sans-serif;
     font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
-  .wrap{max-width:820px;margin:0 auto;padding:20px 16px 60px}
-  header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 0 4px}
+  .wrap{max-width:860px;margin:0 auto;padding:18px 15px 64px}
+  header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:6px 0 2px}
   .brand{font-weight:900;font-size:20px;color:var(--gold2)}
-  .brand small{display:block;font-weight:600;font-size:11px;color:var(--dim);letter-spacing:2px}
+  .brand small{display:block;font-weight:600;font-size:10.5px;color:var(--dim);letter-spacing:2px}
   .spacer{flex:1}
-  .maplink{background:var(--panel);border:1px solid var(--gold);color:var(--gold2);text-decoration:none;
-    border-radius:20px;padding:8px 14px;font-size:14px;font-weight:700}
-  .stamp{color:var(--dim);font-size:12.5px;margin:2px 0 16px;background:var(--panel);border:1px solid var(--line);
-    border-radius:10px;padding:8px 12px;display:inline-block}
+  .maplink{background:var(--panel);border:1px solid var(--gold);color:var(--gold2);text-decoration:none;border-radius:20px;padding:8px 14px;font-size:14px;font-weight:700}
+  .stamp{color:var(--dim);font-size:12.5px;margin:8px 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
   .stamp b{color:var(--warn)}
-  h2{font-size:13px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin:26px 0 10px;display:flex;align-items:center;gap:8px}
-  /* goal */
-  .goal{background:linear-gradient(150deg,rgba(201,168,76,.14),var(--panel));border:1px solid var(--gold);border-radius:16px;padding:18px}
-  .goal .t{font-size:20px;font-weight:800;color:#fff;margin-bottom:4px}
-  .goal .d{color:var(--dim);font-size:15px}
-  .goal .fill{color:var(--warn);font-weight:700}
-  /* funnel tiles */
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-  .tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px 14px}
-  .tile .lab{font-size:12.5px;color:var(--dim);display:flex;align-items:center;gap:6px}
-  .tile .num{font-size:26px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums}
-  .tile .sub{font-size:12px;color:var(--dim);margin-top:2px}
+  h2{font-size:13px;color:var(--gold);letter-spacing:1.4px;text-transform:uppercase;margin:24px 0 9px}
+  .thesis{background:linear-gradient(150deg,rgba(201,168,76,.16),var(--panel));border:1px solid var(--gold);border-radius:16px;padding:16px 18px}
+  .thesis .t{font-size:19px;font-weight:800;color:#fff;margin-bottom:4px}
+  .thesis .d{color:var(--dim);font-size:14.5px}
+  .thesis .d b{color:var(--gold2)}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{border-collapse:collapse;width:100%;min-width:440px;font-size:14px}
+  th,td{padding:9px 11px;text-align:right;border-bottom:1px solid rgba(255,255,255,.06)}
+  th{color:var(--gold);font-size:12px;letter-spacing:.5px;background:var(--panel)}
+  td:first-child{color:#fff;font-weight:600}
+  .g{color:var(--good);font-weight:700}.s{color:var(--gold2);font-weight:700}.b{color:var(--bad)}
+  .note{color:var(--dim);font-size:13px;margin-top:7px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+  .tile .lab{font-size:12px;color:var(--dim)}
+  .tile .num{font-size:22px;font-weight:800;margin-top:2px;font-variant-numeric:tabular-nums}
+  .tile .sub{font-size:11.5px;color:var(--dim);margin-top:2px}
+  .tile .tg{font-size:12px;color:var(--info);margin-top:3px;font-weight:700}
   .tile.zero .num{color:var(--bad)}
-  .arrow{text-align:center;color:var(--dim);font-size:13px;margin:2px 0}
-  /* lists */
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px 16px}
   .row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
   .row:last-child{border-bottom:none}
-  .row .n{flex:none;width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  .row .n{flex:none;width:27px;height:27px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+  .n.a{background:rgba(201,168,76,.16);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
   .n.b{background:rgba(248,113,113,.15);border:1px solid rgba(248,113,113,.4);color:#fca5a5}
-  .n.a{background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
-  .row .x{flex:1}.row b{color:#fff}.row p{margin:2px 0 0;color:var(--dim);font-size:14px}
+  .row .x{flex:1}.row b{color:#fff}.row p{margin:2px 0 0;color:var(--dim);font-size:13.5px}
+  .split{display:flex;flex-wrap:wrap;gap:8px}
+  .split .c{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .split .p{font-size:22px;font-weight:800;color:var(--gold2)}.split .l{font-size:12.5px;color:var(--dim)}
+  .offer{background:linear-gradient(150deg,rgba(74,222,128,.12),var(--panel));border:1px solid rgba(74,222,128,.5);border-radius:14px;padding:15px}
+  .offer .t{font-weight:800;color:#fff;font-size:17px}.offer .pr{color:var(--good);font-weight:800;font-size:20px}
   .exp{background:linear-gradient(150deg,rgba(56,189,248,.12),var(--panel));border:1px solid rgba(56,189,248,.5);border-radius:14px;padding:15px}
-  .exp .t{font-weight:800;color:#fff;font-size:16px}
-  .exp .crit{margin-top:8px;font-size:14px;color:var(--info)}
-  .pill{display:inline-block;font-size:11px;border-radius:20px;padding:2px 9px;font-weight:700;margin-inline-start:6px}
-  .pill.warn{background:rgba(251,191,36,.15);color:var(--warn);border:1px solid rgba(251,191,36,.4)}
-  footer{color:var(--dim);font-size:12.5px;text-align:center;margin-top:34px}
+  .exp .t{font-weight:800;color:#fff;font-size:16px}.exp .crit{margin-top:7px;font-size:13.5px;color:var(--info)}
+  .pill{display:inline-block;font-size:11px;border-radius:20px;padding:2px 9px;font-weight:700;margin-inline-start:6px;background:rgba(251,191,36,.15);color:var(--warn);border:1px solid rgba(251,191,36,.4)}
+  .key{background:var(--panel2);border:1px solid var(--gold);border-radius:14px;padding:15px;font-size:15px}
+  .key b{color:var(--gold2)}
+  footer{color:var(--dim);font-size:12.5px;text-align:center;margin-top:32px}
   a.inl{color:var(--gold2)}
 </style>
 </head>
@@ -63,52 +70,69 @@
     <div class="spacer"></div>
     <a class="maplink" href="./">🗺️ מפת הנכסים →</a>
   </header>
-  <div class="stamp">צילום-מצב <b>ידני</b> · עודכן 14.7 · מספרי-Metricool מ-10.7 — <b>לרענון</b> (התחבר ל-Metricool ואמשוך עדכני)</div>
+  <div class="stamp">ספרינט-30-יום <b>נעול</b> (מביקורת ChatGPT, 14.7) · מספרי-בסיס מ-Metricool 10.7 — <b>לרענון</b></div>
 
-  <h2>🎯 יעד 30 יום</h2>
-  <div class="goal">
-    <div class="t">שלב-הצמיחה: להכפיל חשיפה ומעורבות</div>
-    <div class="d">קודם <b>לגדול</b> — עוקבים, חשיפה, מעורבות, שמירות. במקביל <b>לבסס משפך</b> שמייצר ליד ראשון מהתוכן. יעד מספרי מדויק: <span class="fill">___ עוקבים · ___ לידים ראשונים</span> (למלא ביחד).</div>
+  <h2>⭐ הכרעת-העל</h2>
+  <div class="thesis">
+    <div class="t">ספרינט הפצה ואימות — לא לבנות עוד מערכת</div>
+    <div class="d">ב-30 הימים: <b>Instagram ראשי (70%)</b> · <b>TikTok מעבדת-ניסויים (30%)</b> · <b>משפך-מינימלי תמיד פתוח</b>. יוטיוב = העלאה אוטומטית בלבד. "לבנות תוכן" נחשב <b>רק אם התפרסם תוך 7 ימים</b>.</div>
   </div>
 
-  <h2>📊 המשפך — חשיפה ← לקוח</h2>
+  <h2>🎯 יעד 30 יום (16 רילים · 4 בשבוע)</h2>
+  <div class="tblwrap"><table>
+    <tr><th>מדד</th><th>הצלחה</th><th>הצלחה חזקה</th><th>כישלון</th></tr>
+    <tr><td>עוקבי IG</td><td class="g">350+ (‎+97)</td><td class="s">400+</td><td class="b">&lt;290</td></tr>
+    <tr><td>צפיות-רילים חדשות</td><td class="g">20,000+</td><td class="s">35,000+</td><td class="b">&lt;10,000</td></tr>
+    <tr><td>חציון צפיות/ריל</td><td class="g">1,000+</td><td class="s">1,800+</td><td class="b">&lt;650</td></tr>
+    <tr><td>שמירות</td><td class="g">60+</td><td class="s">120+</td><td class="b">&lt;20</td></tr>
+    <tr><td>שיעור-שמירה /1000</td><td class="g">3+</td><td class="s">6+</td><td class="b">&lt;1</td></tr>
+  </table></div>
+  <div class="note">✅ הצלחה = לעמוד ביעד-העוקבים <b>וגם</b> ביעד-החשיפה <b>וגם</b> לפחות באחד מיעדי-השמירות. אל תסתכל על ממוצע — ריל ויראלי אחד מסתיר 15 כישלונות. TikTok משני: 8,000 צפיות + 2 סרטונים מעל 1,000.</div>
+
+  <h2>📊 המשפך + 3 מדדים-מובילים ללקוח</h2>
   <div class="grid">
-    <div class="tile"><div class="lab">👁️ חשיפה (רילים)</div><div class="num">~11.5K</div><div class="sub">IG 8,451 · TikTok 3,009</div></div>
-    <div class="tile"><div class="lab">🎬 רילים פורסמו</div><div class="num">28+</div><div class="sub">IG ~11 · TikTok ~17</div></div>
-    <div class="tile"><div class="lab">👥 עוקבים</div><div class="num">292</div><div class="sub">IG 253 · TK 37 · YT 2</div></div>
-    <div class="tile"><div class="lab">🎯 הוק (3ש')</div><div class="num">13-53%</div><div class="sub">אמת מנצח · ממותג נחנק</div></div>
-    <div class="tile zero"><div class="lab">🔗 לידים</div><div class="num">0</div><div class="sub">המשפך עוד לא נבנה</div></div>
-    <div class="tile zero"><div class="lab">💬 שיחות</div><div class="num">0</div><div class="sub">—</div></div>
-    <div class="tile zero"><div class="lab">💪 לקוחות</div><div class="num">0</div><div class="sub">—</div></div>
-    <div class="tile"><div class="lab">🙋 בעלים</div><div class="num" style="font-size:18px">רפאל</div><div class="sub">מאציל לפי צורך</div></div>
+    <div class="tile"><div class="lab">👥 עוקבים (בסיס)</div><div class="num">253</div><div class="sub">IG · TK 37 · YT 2</div><div class="tg">יעד: 350+</div></div>
+    <div class="tile"><div class="lab">👁️ ביקורי-פרופיל /1000</div><div class="num">?</div><div class="sub">מלא-עוקבים</div><div class="tg">יעד: 15+ · חלש &lt;7</div></div>
+    <div class="tile"><div class="lab">💬 שיחות-וואטסאפ /100 מבקרי-דף</div><div class="num">0</div><div class="sub">הודעה שנשלחה = ליד</div><div class="tg">יעד: 5+ · חלש &lt;2</div></div>
+    <div class="tile zero"><div class="lab">📞 שיחות כשירות/שבוע</div><div class="num">0</div><div class="sub">מטרה+בעיה+רוצה תוך 30י'</div><div class="tg">יעד: 3+/שבוע</div></div>
   </div>
-  <div class="arrow">חשיפה → פרופיל → עמוד-התחלה → ליד → שיחה → לקוח &nbsp;·&nbsp; <b style="color:var(--warn)">כרגע נעצר אחרי "חשיפה"</b></div>
+  <div class="note">חשיפה → פרופיל → דף "מתחילים כאן" → וואטסאפ → שיחה → לקוח. <b style="color:var(--warn)">כרגע נעצר אחרי "חשיפה".</b> הוק/צפיות/שמירות = אבחון; 3 אלה = התקדמות לכסף.</div>
 
-  <h2>🔴 3 החסמים הגדולים</h2>
-  <div class="card">
-    <div class="row"><div class="n b">1</div><div class="x"><b>ריטנשן / הוק</b><p>הפורמט הממותג (טוקינג-הד) נחנק ב-3ש' (13-17%) מול צילום-אמת (41-53%). זה חוסם חשיפה. → מטופל ב-Format Gate.</p></div></div>
-    <div class="row"><div class="n b">2</div><div class="x"><b>אין משפך-מכירה</b><p>מחשיפה עד ליד אין שלבים: אין עמוד-הפעלה, אין CTA אחד ברור, אין מעקב. תוכן זורם — אבל לא לכיס.</p></div></div>
-    <div class="row"><div class="n b">3</div><div class="x"><b>שמירות ≈ אפס</b><p>אין נכס-שמירה אמיתי בכל ריל. שמירות/שיתופים הם מנוע-החשיפה של האלגוריתם — וזו החולשה מס' 1.</p></div></div>
+  <h2>⚖️ חלוקת-מאמץ (30 יום)</h2>
+  <div class="split">
+    <div class="c"><div class="p">60%</div><div class="l">תוכן חדש שמתפרסם</div></div>
+    <div class="c"><div class="p">20%</div><div class="l">הפצה (Collabs, סטוריז, תגובות)</div></div>
+    <div class="c"><div class="p">15%</div><div class="l">דף + UTM + וואטסאפ + מדידה</div></div>
+    <div class="c"><div class="p">5%</div><div class="l">טיפול-לידים + איסוף-הוכחות</div></div>
   </div>
 
-  <h2>🧪 הניסוי שרץ עכשיו</h2>
+  <h2>🧪 הניסוי — Format Gate</h2>
   <div class="exp">
-    <div class="t">Format Gate <span class="pill warn">בתהליך</span></div>
-    <div>מצלמים רק את סרטון-הזהב (#2) ב-3 גרסאות (פנים-תחילה / הדגמה-תחילה / טקסט-תחילה) ובודקים כ-Trial Reel מול לא-עוקבים.</div>
-    <div class="crit">✅ קריטריון-הצלחה: הדגמה-תחילה עוברת <b>40% הוק (3ש')</b> בשני נושאים + מתקרבת לריטנשן של הצילום-הדינמי. רק אז מסקיילים.</div>
+    <div class="t">6 סרטונים: 3 נושאים × 2 גרסאות <span class="pill">בתהליך</span></div>
+    <div>A: הדגמה בשנייה-1 · B: טוקינג-הד בשנייה-1. אותו מסר/אורך/CTA/עריכה/שעה — משנים <b>רק את הפתיחה</b>. (Trial Reels אם זמין.)</div>
+    <div class="crit">✅ מעבר: ≥500 צפיות/גרסה · הדגמה-תחילה מנצחת ב-2/3 · +10 נק' בהוק-3ש' · זמן-צפייה לא יורד &gt;10% · שמירות+שיתופים ≥4/1000.</div>
   </div>
 
-  <h2>👉 3 הפעולות הבאות שלך</h2>
+  <h2>💰 ההצעה הראשונה</h2>
+  <div class="offer">
+    <div class="t">מחזור-היסוד של Familia <span class="pr">₪999</span></div>
+    <div>5 מקומות לליווי אישי 30-יום: תוכנית · תזונה · צ׳ק-אין שבועי · מענה מהמשפחה. <b>לא</b> מוצר-זול, <b>לא</b> אתגר-חינם (האקדמיה כבר החינם). בונוס למצטרפים-ראשונים: ניתוח-טכניקה מצולם — בלי להוריד מחיר.</div>
+  </div>
+
+  <h2>👉 3 הפעולות השבוע</h2>
   <div class="card">
-    <div class="row"><div class="n a">1</div><div class="x"><b>לצלם את סרטון-הזהב ב-3 גרסאות</b><p>הצעד היחיד שחסום-במצלמה. דף-הצילום מוכן.</p></div></div>
-    <div class="row"><div class="n a">2</div><div class="x"><b>להעלות עמוד "מתחילים כאן" מינימלי</b><p>מסלול-הפעלה עם CTA אחד — הצעד הראשון לבניית המשפך.</p></div></div>
-    <div class="row"><div class="n a">3</div><div class="x"><b>להתחבר ל-Metricool</b><p>כדי שאמשוך מספרים עדכניים ותא-ההנהלה יתעדכן אוטומטית.</p></div></div>
+    <div class="row"><div class="n a">1</div><div class="x"><b>2 רילי-Collab (המנוף הכי גבוה)</b><p>אחד עם בן-משפחה (חשבון אישי) · אחד עם חדר-כושר/פיזיו/מקצוען משלים. Collab = גישה לכמה קהלים בלי להכפיל הפקה.</p></div></div>
+    <div class="row"><div class="n a">2</div><div class="x"><b>דף "מתחילים כאן" מינימלי + וואטסאפ</b><p>כותרת "תוכנית 30-הימים בחינם" · 3 יתרונות · CTA יחיד: "שלח '30' בוואטסאפ וקבל יום-1". + UTM נפרד ל-IG/TikTok.</p></div></div>
+    <div class="row"><div class="n a">3</div><div class="x"><b>לצלם 6 סרטוני Format Gate</b><p>3 נושאים × הדגמה/טוקינג-הד. + לצלם יום-אלופים חודשי (60-90 דק': 8 תשובות לכל אחד).</p></div></div>
   </div>
 
-  <footer>
-    מספרים = צילום ידני, לא סנכרון-חי (עדיין). <a class="inl" href="./">מפת הארכיטקטורה והנכסים ←</a><br>
-    Familia Fitness · כוח של משפחה
-  </footer>
+  <h2>⚠️ העיקרון (הטעות להימנע)</h2>
+  <div class="key">
+    צמיחה והמרה הן <b>לא</b> שני שלבים נפרדים. "קודם עוקבים ואז נמכור" בונה קהל של צרכני-חינם.<br>
+    <b>הפתרון:</b> 3 רילי-צמיחה רחבה + <b>כל ריל רביעי מסנן קונה</b> ("למי ליווי אונליין לא מתאים" · "מה מאמן רואה בצ׳ק-אין שאתה לא"). צמיחה-תחילה כן — צמיחה בלי זרעי-המרה זו טעות.
+  </div>
+
+  <footer>מספרי-בסיס = צילום ידני 10.7 (לרענון). התוכנית המלאה: <a class="inl" href="./">מפת הנכסים ←</a> · sprint-30day-2026-07-14.md<br>Familia Fitness · כוח של משפחה</footer>
 </div>
 </body>
 </html>
