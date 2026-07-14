@@ -145,7 +145,7 @@ const N=[
  ['instagram','products','📸','live','@familia_fitness_coach','נוכחות אינסטגרם',['253 עוקבים · הפיד המרכזי','4 רילים פורסמו','ערוץ-החשיפה הראשי'],['reels-published'],IG],
  ['whatsapp','products','💬','live','משפך וואטסאפ','שיחת-היכרות חינם',['CTA ראשי בדף-הנחיתה','כרטיס-אקדמיה מפנה לכאן','wa.me/972546649909'],['landing','coaching'],WA],
  // APPS
- ['dashboard','apps','☁️','live','דאשבורד ענן','אישור-תוכן + גלריות',['GitHub Pages · סיסמה familia2026','19 גלריות-תוכן','5 לשוניות + regen'],['gallery-covers','gallery-reels','supabase'],DASH+'/'],
+ ['dashboard','apps','☁️','live','דאשבורד ענן','אישור-תוכן + גלריות',['GitHub Pages · מוגן בסיסמה','19 גלריות-תוכן','5 לשוניות + regen'],['gallery-covers','gallery-reels','supabase'],DASH+'/'],
  ['teleprompter','apps','🎥','live','טלפרומפטר PWA','הקלטה + כתוביות',['HD 1080p · smart-sync (Whisper)','14.7: ייבוא + קיבוץ-סדרה','12 תסריטי-אקדמיה נטענים'],['academy-scripts'],'https://familia-teleprompter.vercel.app'],
  ['landing','apps','🎬','live','דף-נחיתה','ליווי כושר+תזונה · קולנועי',['141 פריימים סרט','14.7: כרטיס-אקדמיה + CTA','waitlist לאפליקציה'],['academy-product','familia-app'],'https://familia-landing.vercel.app'],
  ['command-center','apps','🗺️','live','מרכז-שליטה (זה!)','המפה הזו',['קנבס אינטראקטיבי','נכס-COO חי','מתעדכן עם הזמן'],['claude-coo'],DASH+'/command-center/'],
@@ -269,7 +269,7 @@ NODES.forEach(n=>{(n.connections||[]).forEach(t=>{const m=byId[t];if(!m)return;
 NODES.forEach(n=>{const el=document.createElement('div');el.className='node'+(n.url?' hasurl':'');
   el.style.cssText=`left:${n.x}px;top:${n.y}px`;const st=STATUS[n.status];
   el.innerHTML=`<div class="top"><span class="ic">${n.icon}</span><span class="ttl">${n.title}</span><span class="dot ${st[0]}"></span></div><div class="sub">${n.sub||''}</div>${n.url?'<span class="lk">🔗 פתח</span>':''}`;
-  el.addEventListener('click',ev=>{ev.stopPropagation();openDetail(n.id)});world.appendChild(el);n.el=el});
+  el.dataset.id=n.id;world.appendChild(el);n.el=el});
 /* ---- pan/zoom with rAF ---- */
 let tx=0,ty=0,k=1,raf=0;const MINK=0.18,MAXK=2.4;
 function apply(){if(raf)return;raf=requestAnimationFrame(()=>{raf=0;world.style.transform=`translate3d(${tx}px,${ty}px,0) scale(${k})`})}
@@ -277,20 +277,21 @@ function fitK(){return Math.max(Math.min(innerWidth/(planeW+80),innerHeight/(pla
 function fit(){k=fitK();tx=(innerWidth-planeW*k)/2;ty=(innerHeight-planeH*k)/2+8;apply()}
 // initial: a readable zoom centered on the map
 (function(){k=Math.min(Math.max(fitK()*1.7,.42),.8);tx=innerWidth/2-planeW/2*k;ty=90;apply()})();
-const pts=new Map();let mode=null,last=null,pz=null,dXY=null,moved=false;
+const pts=new Map();let mode=null,last=null,pz=null,dXY=null,moved=false,tapId=null;
 function d2(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}function cl(v,a,b){return Math.max(a,Math.min(b,v))}
 vp.addEventListener('pointerdown',e=>{vp.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
   moved=false;dXY={x:e.clientX,y:e.clientY};const nd=e.target.closest('.node');
   if(pts.size===2){const p=[...pts.values()];mode='pinch';pz={d:d2(p[0],p[1]),mx:(p[0].x+p[1].x)/2,my:(p[0].y+p[1].y)/2,k,tx,ty}}
-  else if(nd){mode='tap'}else{mode='pan';last={x:e.clientX,y:e.clientY};vp.classList.add('grabbing')}});
+  else if(nd){mode='tap';tapId=nd.dataset.id}else{mode='pan';last={x:e.clientX,y:e.clientY};vp.classList.add('grabbing')}});
 vp.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
   if(dXY&&Math.hypot(e.clientX-dXY.x,e.clientY-dXY.y)>8)moved=true;
   if(mode==='pinch'&&pts.size>=2){const p=[...pts.values()],d=d2(p[0],p[1]);let nk=cl(pz.k*d/pz.d,MINK,MAXK);
     tx=pz.mx-(pz.mx-pz.tx)*(nk/pz.k);ty=pz.my-(pz.my-pz.ty)*(nk/pz.k);k=nk;apply()}
   else if(mode==='pan'&&last){tx+=e.clientX-last.x;ty+=e.clientY-last.y;last={x:e.clientX,y:e.clientY};apply()}
   else if(mode==='tap'&&moved){mode='pan';last={x:e.clientX,y:e.clientY};vp.classList.add('grabbing')}});
-function up(e){pts.delete(e.pointerId);if(pts.size<2&&mode==='pinch'){mode=pts.size?'pan':null;const r=[...pts.values()][0];if(r)last=r}
-  if(!pts.size){mode=null;last=null;vp.classList.remove('grabbing')}}
+function up(e){const wasTap=(mode==='tap'&&!moved),tid=tapId;pts.delete(e.pointerId);if(pts.size<2&&mode==='pinch'){mode=pts.size?'pan':null;const r=[...pts.values()][0];if(r)last=r}
+  if(!pts.size){mode=null;last=null;vp.classList.remove('grabbing')}
+  if(wasTap&&tid){tapId=null;openDetail(tid)}}
 vp.addEventListener('pointerup',up);vp.addEventListener('pointercancel',up);
 vp.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:1/1.12,nk=cl(k*f,MINK,MAXK);
   tx=e.clientX-(e.clientX-tx)*(nk/k);ty=e.clientY-(e.clientY-ty)*(nk/k);k=nk;apply()},{passive:false});
@@ -314,19 +315,22 @@ function closeDetail(){D.classList.remove('open');NODES.forEach(m=>m.el.classLis
   linkEls.forEach(l=>l.p.setAttribute('stroke','rgba(201,168,76,.22)'))}
 vp.addEventListener('pointerdown',e=>{if(!e.target.closest('.node')&&D.classList.contains('open'))closeDetail()});
 /* ---- filter chips ---- */
+function setVis(fn){NODES.forEach(n=>{n.vis=fn(n)!==false;n.el.style.display=n.vis?'':'none'});
+  linkEls.forEach(l=>{l.p.style.display=(byId[l.a].vis&&byId[l.b].vis)?'':'none'})}
 let curFilter=null;const chips=document.getElementById('chips');
 const allChip=document.createElement('div');allChip.className='chip on';allChip.textContent='הכל';allChip.onclick=()=>setFilter(null);chips.appendChild(allChip);
 for(const g in GROUPS){const c=document.createElement('div');c.className='chip';c.textContent=GROUPS[g].label.replace(/ —.*/,'').replace(/\(.*\)/,'').trim();c.dataset.g=g;c.onclick=()=>setFilter(g);chips.appendChild(c)}
-function setFilter(g){curFilter=g;[...chips.children].forEach(c=>c.classList.toggle('on',(g===null&&c===allChip)||c.dataset.g===g));
-  NODES.forEach(n=>n.el.classList.toggle('dim',g&&n.group!==g));
-  for(const gg in GROUPS){if(GROUPS[gg].frame){const on=!g||gg===g;GROUPS[gg].frame.style.opacity=on?1:.25;GROUPS[gg].lbl.style.opacity=on?1:.3}}
+function setFilter(g){curFilter=g;document.getElementById('search').value='';[...chips.children].forEach(c=>c.classList.toggle('on',(g===null&&c===allChip)||c.dataset.g===g));
+  setVis(n=>!g||n.group===g);
+  for(const gg in GROUPS){if(GROUPS[gg].frame){const on=!g||gg===g;GROUPS[gg].frame.style.display=on?'':'none';GROUPS[gg].lbl.style.display=on?'':'none'}}
   if(g){const G=GROUPS[g];const nk=cl(Math.min(innerWidth/(G.fw+120),innerHeight/(G.fh+160)),.4,1.1);
-    tx=innerWidth/2-(G.fx+G.fw/2)*nk;ty=innerHeight/2-(G.fy+G.fh/2)*nk;k=nk;apply()}}
+    tx=innerWidth/2-(G.fx+G.fw/2)*nk;ty=innerHeight/2-(G.fy+G.fh/2)*nk;k=nk;apply()}else fit()}
 /* ---- search ---- */
 document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.trim();
-  if(!q){NODES.forEach(n=>n.el.classList.remove('dim','sel'));return}
-  NODES.forEach(n=>{const hit=(n.title+' '+(n.sub||'')+' '+(n.details||[]).join(' ')).includes(q);
-    n.el.classList.toggle('dim',!hit);n.el.classList.toggle('sel',hit)})});
+  for(const gg in GROUPS){if(GROUPS[gg].frame){GROUPS[gg].frame.style.display='';GROUPS[gg].lbl.style.display=''}}
+  if(!q){setVis(()=>true);NODES.forEach(n=>n.el.classList.remove('sel'));return}
+  NODES.forEach(n=>n.el.classList.toggle('sel',(n.title+' '+(n.sub||'')+' '+(n.details||[]).join(' ')).includes(q)));
+  setVis(n=>(n.title+' '+(n.sub||'')+' '+(n.details||[]).join(' ')).includes(q))});
 /* ---- legend ---- */
 document.getElementById('legend').innerHTML='<b>סטטוס</b>'+Object.entries(STATUS).map(([k,v])=>`<div class="row"><i style="background:${SCOLOR[k]}"></i>${v[1]}</div>`).join('');
 setTimeout(()=>document.getElementById('hint').style.opacity=0,4600);
