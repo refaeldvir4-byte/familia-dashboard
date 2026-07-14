@@ -97,7 +97,7 @@
 <div id="chips"></div>
 <div id="hint">גררו להזזה · צביטה לזום · הקישו על צומת → פרטים וקישור</div>
 <div id="legend"></div>
-<div id="tools"><button id="guide" title="מדריך פשוט">❓</button><button id="zin">＋</button><button id="zout">−</button><button id="fit">⤢</button></div>
+<div id="tools"><button id="cockpit" title="תא-הנהלה">🎯</button><button id="guide" title="מדריך פשוט">❓</button><button id="zin">＋</button><button id="zout">−</button><button id="fit">⤢</button></div>
 <aside id="detail"><button class="x" onclick="closeDetail()">✕</button><div class="dic" id="d-ic"></div>
   <h2 id="d-ttl"></h2><div class="dstatus" id="d-status"></div><div class="dsub" id="d-sub"></div><div id="d-body"></div></aside>
 <script>
@@ -144,6 +144,7 @@ const N=[
  ['coaching','products','💪','active','ליווי אונליין מלא','המוצר העסקי (בתשלום)',['מאמן אמיתי מהמשפחה · צעד-צעד','אימון · תזונה · פוזינג · הכנה-לתחרות','מה שסרטון לא נותן: התאמה+אחריותיות'],['familia-app'],WA],
  ['instagram','products','📸','live','@familia_fitness_coach','נוכחות אינסטגרם',['253 עוקבים · הפיד המרכזי','4 רילים פורסמו','ערוץ-החשיפה הראשי'],['reels-published'],IG],
  ['whatsapp','products','💬','live','משפך וואטסאפ','שיחת-היכרות חינם',['CTA ראשי בדף-הנחיתה','כרטיס-אקדמיה מפנה לכאן','wa.me/972546649909'],['landing','coaching'],WA],
+ ['champions','products','🏆','active','4 אלופי WNBF','רפי · לולי · אדיר · רפאל',['היתרון האמיתי: משפחת-אלופים','מנוע-הוכחה — לפתח תוכן לכל אחד','היום כמעט הכל סובב סביב רפאל (לגוון)'],['instagram','coaching','brand'],''],
  // APPS
  ['dashboard','apps','☁️','live','דאשבורד ענן','אישור-תוכן + גלריות',['GitHub Pages · מוגן בסיסמה','19 גלריות-תוכן','5 לשוניות + regen'],['gallery-covers','gallery-reels','supabase'],DASH+'/'],
  ['teleprompter','apps','🎥','live','טלפרומפטר PWA','הקלטה + כתוביות',['HD 1080p · smart-sync (Whisper)','14.7: ייבוא + קיבוץ-סדרה','12 תסריטי-אקדמיה נטענים'],['academy-scripts'],'https://familia-teleprompter.vercel.app'],
@@ -159,7 +160,7 @@ const N=[
  ['n8n','core','🔗','blocked','n8n Workflows','פרסום/מדדים/מתזמן',['3 workflows נבדקו','Docker :5678','חסום: מפתחות Meta'],[],''],
  ['supabase','core','🗄️','live','Supabase','DB + Storage',['ideas→scripts→assets→posts','Storage לרינדורים','SERVICE_KEY צד-שרת'],['content-pipeline'],''],
  // DELIVERABLES (openable galleries + docs)
- ['reels-published','deliverables','▶️','live','4 רילים פורסמו','זריקות/חזקות/1%/כואב',['פורסמו ל-IG+טיקטוק+שורטס','ממתינים למדדים מלאים'],['instagram','data-finding'],IG],
+ ['reels-published','deliverables','▶️','live','רילים פורסמו (28+)','IG ~11 · TikTok ~17',['הרבה מעבר ל-4 (כולל תוכן קודם)','~11.5K צפיות מצטברות (10.7)','לרענן מ-Metricool'],['instagram','data-finding'],IG],
  ['gallery-covers','deliverables','🖼️','live','גלריית קאברים','12 קאברי-אקדמיה + עוד',['זהב-על-שחור · וורדמארק','נפתח בדאשבורד'],['academy-assets'],DASH+'/covers.html'],
  ['gallery-carousels','deliverables','🎠','live','גלריית קרוסלות','זהב-על-שחור 1080×1350',['"מה ללבוש" + עוד','נפתח בדאשבורד'],['render-engine'],DASH+'/carousels-natural/'],
  ['gallery-reels','deliverables','🎞️','live','גלריית רילים','רילים ממותגים',['תוצרי-הפקה','נפתח בדאשבורד'],['reels-pipeline'],DASH+'/reel/'],
@@ -298,6 +299,7 @@ vp.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:1/1.1
 function zb(f){const nk=cl(k*f,MINK,MAXK),cx=innerWidth/2,cy=innerHeight/2;tx=cx-(cx-tx)*(nk/k);ty=cy-(cy-ty)*(nk/k);k=nk;apply()}
 document.getElementById('zin').onclick=()=>zb(1.3);document.getElementById('zout').onclick=()=>zb(1/1.3);document.getElementById('fit').onclick=fit;
 document.getElementById('guide').onclick=()=>window.open('guide.html','_blank');
+document.getElementById('cockpit').onclick=()=>location.href='cockpit.html';
 /* ---- detail ---- */
 const D=document.getElementById('detail');
 function openDetail(id){const n=byId[id];if(!n)return;NODES.forEach(m=>m.el.classList.remove('sel'));n.el.classList.add('sel');
