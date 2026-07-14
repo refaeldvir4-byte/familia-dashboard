@@ -97,7 +97,7 @@
 <div id="chips"></div>
 <div id="hint">גררו להזזה · צביטה לזום · הקישו על צומת → פרטים וקישור</div>
 <div id="legend"></div>
-<div id="tools"><button id="zin">＋</button><button id="zout">−</button><button id="fit">⤢</button></div>
+<div id="tools"><button id="guide" title="מדריך פשוט">❓</button><button id="zin">＋</button><button id="zout">−</button><button id="fit">⤢</button></div>
 <aside id="detail"><button class="x" onclick="closeDetail()">✕</button><div class="dic" id="d-ic"></div>
   <h2 id="d-ttl"></h2><div class="dstatus" id="d-status"></div><div class="dsub" id="d-sub"></div><div id="d-body"></div></aside>
 <script>
@@ -274,6 +274,7 @@ vp.addEventListener('wheel',e=>{e.preventDefault();const f=e.deltaY<0?1.12:1/1.1
   tx=e.clientX-(e.clientX-tx)*(nk/k);ty=e.clientY-(e.clientY-ty)*(nk/k);k=nk;apply()},{passive:false});
 function zb(f){const nk=cl(k*f,MINK,MAXK),cx=innerWidth/2,cy=innerHeight/2;tx=cx-(cx-tx)*(nk/k);ty=cy-(cy-ty)*(nk/k);k=nk;apply()}
 document.getElementById('zin').onclick=()=>zb(1.3);document.getElementById('zout').onclick=()=>zb(1/1.3);document.getElementById('fit').onclick=fit;
+document.getElementById('guide').onclick=()=>window.open('guide.html','_blank');
 /* ---- detail ---- */
 const D=document.getElementById('detail');
 function openDetail(id){const n=byId[id];if(!n)return;NODES.forEach(m=>m.el.classList.remove('sel'));n.el.classList.add('sel');
