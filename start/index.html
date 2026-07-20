@@ -6,20 +6,21 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#050409">
 <title>מתחילים כאן · Familia Fitness</title>
-<meta name="description" content="תוכנית 30 הימים למתאמן המתחיל — בחינם. בדיוק מה לעשות מהאימון הראשון.">
+<meta name="description" content="תוכן ההתחלה למתאמן המתחיל — בחינם. בדיוק מה לעשות מהאימון הראשון.">
+<meta name="robots" content="noindex">
 <style>
   :root{--gold:#c9a84c;--gold2:#f0d080;--ink:#070610;--panel:#12111d;--line:#2a2a3c;--txt:#f1efe7;--dim:#a7a4b3;--wa:#25d366}
   *{box-sizing:border-box}
   html,body{margin:0;min-height:100%;background:
     radial-gradient(900px 600px at 50% 8%, #16131f 0%, var(--ink) 68%);
     color:var(--txt);font-family:"Heebo","Segoe UI",system-ui,Arial,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
-  .wrap{max-width:560px;margin:0 auto;padding:44px 22px 60px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .wrap{max-width:560px;margin:0 auto;padding:40px 22px 56px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
   .kick{color:var(--gold);font-weight:800;letter-spacing:4px;font-size:12px;text-transform:uppercase;text-align:center}
   h1{font-size:clamp(28px,7vw,40px);line-height:1.15;text-align:center;margin:12px 0 6px;
     background:linear-gradient(92deg,#fff 30%,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
   h1 .free{display:block;background:linear-gradient(92deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{text-align:center;color:var(--dim);font-size:16px;max-width:400px;margin:0 auto 26px}
-  .benes{list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:12px}
+  .sub{text-align:center;color:var(--dim);font-size:16px;max-width:420px;margin:0 auto 26px}
+  .benes{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:12px}
   .benes li{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;font-size:16px}
   .benes .ic{flex:none;font-size:22px}
   .cta{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#05230f;
@@ -27,7 +28,17 @@
   .cta:active{transform:translateY(1px)}
   .cta svg{width:24px;height:24px;fill:#05230f}
   .micro{text-align:center;color:var(--dim);font-size:13.5px;margin-top:12px}
-  .brandlock{text-align:center;margin-top:38px;color:var(--dim)}
+  .or{display:flex;align-items:center;gap:14px;margin:26px 0 18px;color:var(--dim);font-size:13px}
+  .or::before,.or::after{content:"";height:1px;background:var(--line);flex:1}
+  .alt{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--gold);border-radius:16px;padding:15px 18px;text-align:center}
+  .alt .t{color:var(--gold2);font-weight:800;font-size:17px}
+  .alt .d{color:var(--dim);font-size:13.5px;margin-top:3px}
+  .alt:active{transform:translateY(1px)}
+  .coach{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 17px}
+  .coach .t{color:var(--txt);font-weight:800;font-size:15.5px;margin-bottom:4px}
+  .coach .d{color:var(--dim);font-size:14px}
+  .coach a{color:var(--gold2);font-weight:700;text-decoration:none}
+  .brandlock{text-align:center;margin-top:34px;color:var(--dim)}
   .brandlock .wm{font-weight:900;color:var(--gold2);font-size:17px;letter-spacing:.5px}
   .brandlock .sl{font-size:12.5px;letter-spacing:2px}
 </style>
@@ -35,20 +46,33 @@
 <body>
 <div class="wrap">
   <div class="kick">Familia Fitness</div>
-  <h1>מתחילים להתאמן?<span class="free">30 הימים הראשונים — בחינם</span></h1>
-  <p class="sub">תוכנית פשוטה למתאמן המתחיל: בדיוק מה לעשות, מהאימון הראשון — בלי לדעת כלום מראש.</p>
+  <h1>מתחילים להתאמן?<span class="free">תוכן ההתחלה — בחינם</span></h1>
+  <p class="sub">כל מה שמתאמן מתחיל צריך לדעת לפני האימון הראשון: איך בוחרים משקל, כמה סטים, ומה עושים כשכואב.</p>
 
   <ul class="benes">
-    <li><span class="ic">🗺️</span><div>בדיוק מה לעשות בכל אימון — צעד-אחר-צעד</div></li>
-    <li><span class="ic">🏠</span><div>בית או חדר כושר — מתאימים לך אישית</div></li>
-    <li><span class="ic">👨‍👩‍👦</span><div>ליווי יומי מהמשפחה, בוואטסאפ — בחינם</div></li>
+    <li><span class="ic">🗺️</span><div>בדיוק מה לעשות בכל אימון — צעד־אחר־צעד</div></li>
+    <li><span class="ic">🏠</span><div>בית או חדר כושר — מתאים לשניהם</div></li>
+    <li><span class="ic">🎬</span><div>סרטונים קצרים שמראים איך, לא רק מסבירים</div></li>
   </ul>
 
   <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
     שלחו "30" בוואטסאפ וקבלו את יום 1
   </a>
-  <p class="micro">ללא ספאם · ליווי אמיתי מהמשפחה · תשובה מהירה</p>
+  <p class="micro">ללא ספאם · אנחנו קוראים כל הודעה · תשובה בדרך כלל באותו יום</p>
+
+  <div class="or">או</div>
+
+  <a class="alt" id="app" href="https://familia-v5.vercel.app" target="_blank" rel="noopener">
+    <div class="t">להתחיל ישר באפליקציה — 14 יום חינם</div>
+    <div class="d">תוכנית אימונים ומעקב תזונה. בלי כרטיס אשראי.</div>
+  </a>
+
+  <div class="coach">
+    <div class="t">רוצים ליווי אישי מהמשפחה?</div>
+    <div class="d">תוכנית שנבנית עליכם, תפריט, צ׳ק־אין שבועי וקבוצת וואטסאפ עם ארבעתנו.
+      <a id="coachlink" href="#" target="_blank" rel="noopener">דברו איתנו</a></div>
+  </div>
 
   <div class="brandlock">
     <div class="wm">Familia Fitness</div>
@@ -62,13 +86,27 @@
   // source tracking: ?s=ig / ?s=tiktok / ?utm_source=...
   var q=new URLSearchParams(location.search);
   var src=(q.get("s")||q.get("utm_source")||"ישיר").toLowerCase();
-  var srcLabel={ig:"אינסטגרם",instagram:"אינסטגרם",tiktok:"טיקטוק",tt:"טיקטוק","ישיר":"ישיר"}[src]||src;
-  var msg=
-    "היי פמיליה! רוצה להתחיל את תוכנית 30 הימים 💪\n"+
+  var srcLabel={ig:"אינסטגרם",instagram:"אינסטגרם",tiktok:"טיקטוק",tt:"טיקטוק",yt:"יוטיוב",youtube:"יוטיוב","ישיר":"ישיר"}[src]||src;
+
+  function wa(text){ return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(text); }
+
+  document.getElementById("cta").href = wa(
+    "היי פמיליה! רוצה להתחיל את תוכן ההתחלה 💪\n"+
     "מתאמן/ת ב: בית / חדר כושר\n"+
     "יכול/ה להתאמן: 2 / 3 פעמים בשבוע\n"+
-    "(מקור: "+srcLabel+")";
-  document.getElementById("cta").href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
+    "(מקור: "+srcLabel+" · 30)"
+  );
+
+  document.getElementById("coachlink").href = wa(
+    "היי פמיליה! מעניין אותי ליווי אישי 🦁\n"+
+    "המטרה שלי:\n"+
+    "מה הכי מקשה עליי היום:\n"+
+    "(מקור: "+srcLabel+" · ליווי)"
+  );
+
+  // carry the source into the app link too
+  var app=document.getElementById("app");
+  app.href = app.href + "?utm_source=" + encodeURIComponent(src) + "&utm_medium=start";
 })();
 </script>
 </body>
