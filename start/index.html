@@ -63,7 +63,7 @@
 
   <div class="or">או</div>
 
-  <a class="alt" id="app" href="https://familia-v5.vercel.app" target="_blank" rel="noopener">
+  <a class="alt" id="app" href="https://familia-fitness.vercel.app/onboarding" target="_blank" rel="noopener">
     <div class="t">להתחיל ישר באפליקציה — 14 יום חינם</div>
     <div class="d">תוכנית אימונים ומעקב תזונה. בלי כרטיס אשראי.</div>
   </a>
@@ -104,9 +104,15 @@
     "(מקור: "+srcLabel+" · ליווי)"
   );
 
-  // carry the source into the app link too
+  // carry a short, privacy-safe source code into the production app.
+  // The app stores first-touch attribution only after an account is created.
   var app=document.getElementById("app");
-  app.href = app.href + "?utm_source=" + encodeURIComponent(src) + "&utm_medium=start";
+  var appSource={instagram:"ig",tiktok:"tiktok",tt:"tiktok",youtube:"yt"}[src]||src;
+  if (/^[a-z0-9]{2,16}$/.test(appSource) && appSource!=="direct") {
+    var appUrl=new URL(app.href);
+    appUrl.searchParams.set("s",appSource);
+    app.href=appUrl.toString();
+  }
 })();
 </script>
 </body>
