@@ -71,7 +71,7 @@
   <div class="coach">
     <div class="t">רוצים ליווי אישי מהמשפחה?</div>
     <div class="d">תוכנית שנבנית עליכם, תפריט, צ׳ק־אין שבועי וקבוצת וואטסאפ עם ארבעתנו.
-      <a id="coachlink" href="#" target="_blank" rel="noopener">דברו איתנו</a></div>
+      <a id="coachlink" href="../coaching/">כל הפרטים על הליווי</a></div>
   </div>
 
   <div class="brandlock">
@@ -97,12 +97,10 @@
     "(מקור: "+srcLabel+" · 30)"
   );
 
-  document.getElementById("coachlink").href = wa(
-    "היי פמיליה! מעניין אותי ליווי אישי 🦁\n"+
-    "המטרה שלי:\n"+
-    "מה הכי מקשה עליי היום:\n"+
-    "(מקור: "+srcLabel+" · ליווי)"
-  );
+  // coaching door -> the coaching offer page, keeping the source tag
+  var coachUrl=new URL("../coaching/", location.href);
+  if (src!=="ישיר") coachUrl.searchParams.set("s",src);
+  document.getElementById("coachlink").href = coachUrl.toString();
 
   // carry a short, privacy-safe source code into the production app.
   // The app stores first-touch attribution only after an account is created.

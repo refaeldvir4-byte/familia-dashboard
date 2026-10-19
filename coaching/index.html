@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#04040a">
+<meta name="robots" content="noindex">
+<title>ליווי אישי · Familia Fitness</title>
+<meta name="description" content="ליווי אישי מהמשפחה של Familia Fitness: תוכנית אימונים, תפריט בגרמים, צ׳ק־אין שבועי וקבוצת וואטסאפ עם ארבעתנו. ₪999 לחודש.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:"HeeboLocal";src:url("fonts/Heebo-Regular.ttf");font-weight:400}
+  @font-face{font-family:"HeeboLocal";src:url("fonts/Heebo-Medium.ttf");font-weight:500}
+  @font-face{font-family:"HeeboLocal";src:url("fonts/Heebo-Bold.ttf");font-weight:700}
+  @font-face{font-family:"HeeboLocal";src:url("fonts/Heebo-ExtraBold.ttf");font-weight:800}
+  @font-face{font-family:"HeeboLocal";src:url("fonts/Heebo-Black.ttf");font-weight:900}
+  @font-face{font-family:"PlayfairLocal";src:url("fonts/Playfair-Bold.ttf");font-weight:700}
+  @font-face{font-family:"PlayfairLocal";src:url("fonts/Playfair-Black.ttf");font-weight:900}
+
+  :root{
+    --ink:#04040a; --panel:#0d0c13; --panel2:#14121b;
+    --line:rgba(201,168,76,.30); --line-strong:rgba(201,168,76,.62);
+    --gold:#c9a84c; --gold2:#f0d080;
+    --txt:#f4f0e6; --dim:#aaa5b5; --dim2:#7d7889;
+    --he:"Heebo","HeeboLocal","Segoe UI",system-ui,Arial,sans-serif;
+    --lat:"Playfair Display","PlayfairLocal",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; color:var(--txt); font-family:var(--he); line-height:1.6;
+    background:
+      radial-gradient(760px 520px at 88% -6%, rgba(201,168,76,.17), transparent 62%),
+      radial-gradient(620px 560px at -10% 46%, rgba(201,168,76,.07), transparent 62%),
+      var(--ink);
+  }
+  .wrap{max-width:520px; margin:0 auto; padding:22px 18px 40px}
+
+  /* header — same lockup as the carousels */
+  .top{display:flex; align-items:center; justify-content:space-between; margin-bottom:30px}
+  .lock{display:flex; align-items:center; gap:12px; direction:ltr}
+  .lock img{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--gold); display:block}
+  .lock span{font-family:var(--lat); font-weight:700; color:var(--gold2); letter-spacing:.26em; font-size:17px}
+  .tag{font-size:13px; color:var(--dim); border:1px solid var(--line); border-radius:999px; padding:4px 12px}
+
+  /* hero */
+  .kick{display:flex; align-items:center; gap:10px; color:var(--gold2); font-weight:800; font-size:14.5px; letter-spacing:.06em}
+  .kick::before{content:""; width:26px; height:2px; background:linear-gradient(90deg,var(--gold),var(--gold2)); border-radius:2px}
+  h1{margin:12px 0 14px; font-weight:900; font-size:34px; line-height:1.18; letter-spacing:-.01em}
+  h1 .g{display:block; background:linear-gradient(95deg,var(--gold2),var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .sub{font-size:17.5px; color:#d9d4c8; margin:0 0 22px}
+  .price{display:flex; align-items:baseline; gap:10px; margin:0 0 18px}
+  .price b{font-family:var(--lat); font-weight:900; font-size:52px; line-height:1;
+    background:linear-gradient(180deg,var(--gold2),var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; direction:ltr}
+  .price span{font-size:18px; color:var(--dim); font-weight:700}
+
+  .cta{display:flex; align-items:center; justify-content:center; gap:10px; text-decoration:none;
+    background:linear-gradient(95deg,var(--gold2),var(--gold)); color:#120f06; font-weight:900; font-size:19px;
+    border-radius:16px; padding:17px 18px; box-shadow:0 12px 34px rgba(201,168,76,.26)}
+  .cta svg{width:24px; height:24px; fill:#120f06; flex:none}
+  .cta:active{transform:translateY(1px)}
+  .micro{text-align:center; color:var(--dim); font-size:14px; margin:11px 0 0}
+
+  /* sections */
+  section{margin-top:40px}
+  h2{font-size:24px; font-weight:900; margin:0 0 6px; line-height:1.25}
+  .lead{color:var(--dim); margin:0 0 16px; font-size:15.5px}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:20px; padding:18px}
+
+  ul.fit{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px}
+  ul.fit li{display:flex; gap:12px; align-items:flex-start; font-size:16.5px}
+  ul.fit li i{flex:none; width:24px; height:24px; margin-top:2px; border-radius:50%; border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center; color:var(--gold2); font-style:normal; font-size:13px; font-weight:900}
+  ul.fit.no li i{border-color:var(--dim2); color:var(--dim)}
+  .no-card{margin-top:14px}
+  .no-card h3{margin:0 0 12px; font-size:17px; color:var(--dim); font-weight:800}
+
+  .incl{display:flex; flex-direction:column; gap:10px}
+  .item{display:grid; grid-template-columns:52px 1fr; gap:4px 12px; align-items:start;
+    background:linear-gradient(180deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:18px; padding:15px 16px}
+  .item .n{grid-row:span 2; font-family:var(--lat); font-weight:900; font-size:30px; line-height:1; color:var(--gold2); direction:ltr; text-align:right; padding-top:2px}
+  .item h4{margin:0; font-size:17.5px; font-weight:800}
+  .item p{margin:0; color:var(--dim); font-size:15px; line-height:1.55}
+
+  .why{margin-top:40px; border-inline-start:3px solid var(--gold); padding:4px 16px 4px 0}
+  .why p{margin:0; font-size:19px; font-weight:700; line-height:1.5}
+  .why p .soft{display:block; font-size:15.5px; font-weight:500; color:var(--dim); margin-top:8px}
+
+  ol.steps{list-style:none; margin:0; padding:0; position:relative}
+  ol.steps::before{content:""; position:absolute; top:18px; bottom:18px; right:17px; width:1.5px; background:var(--line)}
+  ol.steps li{position:relative; display:flex; gap:14px; align-items:flex-start; padding:0 0 18px}
+  ol.steps li:last-child{padding-bottom:0}
+  ol.steps .b{flex:none; position:relative; z-index:1; width:36px; height:36px; border-radius:50%; background:var(--ink); border:1.5px solid var(--gold);
+    color:var(--gold2); font-family:var(--lat); font-weight:900; font-size:17px; display:flex; align-items:center; justify-content:center}
+  ol.steps p{margin:6px 0 0; font-size:16.5px}
+
+  .cap{border:1.5px dashed var(--line-strong); border-radius:20px; padding:18px; background:rgba(201,168,76,.04)}
+  .cap p{margin:0; font-size:16.5px}
+
+  .ph{color:var(--gold2); background:rgba(240,208,128,.12); border:1px dashed rgba(240,208,128,.7); border-radius:7px;
+    padding:0 6px; font-weight:700; -webkit-box-decoration-break:clone; box-decoration-break:clone}
+
+  .final{margin-top:44px; text-align:center}
+  .final h2{margin-bottom:8px}
+  .final .lead{margin-bottom:18px}
+
+  footer{margin-top:40px; padding-top:22px; border-top:1px solid var(--line)}
+  .disc{color:var(--dim2); font-size:13.5px; margin:0 0 22px; line-height:1.6}
+  .wm{text-align:center; direction:ltr}
+  .wm .a{font-family:var(--lat); font-weight:900; font-size:26px; color:var(--gold2); letter-spacing:.01em}
+  .wm .b{font-family:var(--lat); font-weight:700; font-size:12px; color:#fff; letter-spacing:.42em; margin-inline-start:6px}
+  .slogan{text-align:center; color:var(--dim); font-size:14px; margin-top:4px}
+  .ig{text-align:center; color:var(--dim2); font-size:13px; direction:ltr; margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="lock"><img src="data:image/jpeg;base64,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" alt="Familia Fitness"><span>FAMILIA</span></div>
+    <div class="tag">ליווי אישי</div>
+  </header>
+
+  <main>
+    <div class="kick">ליווי אישי מהמשפחה</div>
+    <h1>לא עוד תוכנית מהאינטרנט.<span class="g">ארבעתנו, בתוך האימון והתזונה שלכם.</span></h1>
+    <p class="sub">משפחה של ארבעה אלופי WNBF שבונה את התוכנית סביב החיים שלכם, ומכיילת אותה כל שבוע לפי מה שקורה בפועל.</p>
+
+    <div class="price"><b>₪999</b><span>לחודש</span></div>
+
+    <a class="cta js-wa" href="https://wa.me/972546649909" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
+      כותבים לנו בוואטסאפ
+    </a>
+    <p class="micro">שיחת התאמה קצרה, בלי התחייבות ובלי לחץ.</p>
+
+    <section>
+      <h2>למי זה מתאים</h2>
+      <div class="card">
+        <ul class="fit">
+          <li><i>✓</i><span>מי שכבר התחיל לזוז, ולא רוצה להמשיך לנחש לבד.</span></li>
+          <li><i>✓</i><span>מי שיש לו מטרה ברורה, ובעיה שיד מקצועית יכולה לעזור בה: טכניקה, עקביות, או התחושה שאולי עושים את זה לא נכון.</span></li>
+          <li><i>✓</i><span>מי שרוצה להתחיל בחודש הקרוב, ולא ״מתישהו״.</span></li>
+          <li><i>✓</i><span>מי שמתאמן באזור רמלה, כי חלק מהליווי נעשה פנים אל פנים.</span></li>
+        </ul>
+      </div>
+      <div class="card no-card">
+        <h3>ולמי פחות (עדיף שנגיד מראש)</h3>
+        <ul class="fit no">
+          <li><i>–</i><span>מי שמחפש קיצור דרך או מספר מסוים על המשקל עד תאריך מסוים. שינוי אמיתי לוקח זמן, ואנחנו לא נבטיח אחרת.</span></li>
+          <li><i>–</i><span>מי שעוד לא בטוח שהוא רוצה להתחיל. בשביל זה יש את תוכן ההתחלה החינמי שלנו בוואטסאפ.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>מה כלול בליווי</h2>
+      <p class="lead">שמונה דברים נכנסים בליווי.</p>
+      <div class="incl">
+        <div class="item"><div class="n">01</div><h4>תוכנית אימונים אישית</h4><p>לבית או לחדר כושר, לפי הימים שיש לכם באמת. היא מופיעה באפליקציה.</p></div>
+        <div class="item"><div class="n">02</div><h4>תפריט תזונה מותאם</h4><p>בגרמים, כמו באפליקציה, מאוכל שאוכלים ממילא ושאפשר לחיות איתו.</p></div>
+        <div class="item"><div class="n">03</div><h4>התאמה מלאה</h4><p>לצרכים, למגבלות ולזמן שיש לכם.</p></div>
+        <div class="item"><div class="n">04</div><h4>צ׳ק־אין שבועי</h4><p>מספרים לנו איך עבר השבוע, ומקבלים כיוונון.</p></div>
+        <div class="item"><div class="n">05</div><h4>שקילות בוקר ומעקב</h4><p>נתון שעוזר לנו לכייל, לא ציון. המשקל זז מיום ליום בגלל מים, מלח והארוחה של אתמול, ולכן מסתכלים על הכיוון לאורך שבועות. את התדירות מתאימים יחד, ולמי שהמספר מלחיץ יש דרך לעקוב גם בלי להישקל כל בוקר.</p></div>
+        <div class="item"><div class="n">06</div><h4>כיולים משתנים</h4><p>התוכנית זזה איתכם. מה שלא עובד, משנים.</p></div>
+        <div class="item"><div class="n">07</div><h4>גישה מלאה לאפליקציה</h4><p>כלולה בליווי.</p></div>
+        <div class="item"><div class="n">08</div><h4>קבוצת וואטסאפ אישית</h4><p>אתם וארבעתנו, עם מענה מהבוקר ועד הלילה.</p></div>
+      </div>
+    </section>
+
+    <div class="why">
+      <p>זה לא זול, כי אלה ארבעה אנשים שמסתכלים על התהליך שלכם, ולא מנוע שרץ לבד.
+        <span class="soft">מי שרוצה רק את המנוע, יש לנו אפליקציה בדיוק בשביל זה.</span></p>
+    </div>
+
+    <section>
+      <h2>איך מתחילים</h2>
+      <p class="lead">ארבעה צעדים, בלי הפתעות.</p>
+      <ol class="steps">
+        <li><span class="b">1</span><p>כותבים לנו בוואטסאפ מה המטרה ומה הכי מקשה היום.</p></li>
+        <li><span class="b">2</span><p>שיחה קצרה, כעשר דקות, כדי לראות יחד אם הליווי מתאים. בלי התחייבות.</p></li>
+        <li><span class="b">3</span><p>אם זה מתאים, משלמים על החודש הראשון בביט או בהעברה בנקאית, ומקבלים קבלה.</p></li>
+        <li><span class="b">4</span><p>בונים יחד את התוכנית ואת התפריט, ופותחים את קבוצת הוואטסאפ.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>כמה מתאמנים אנחנו לוקחים</h2>
+      <div class="cap">
+        <p>אנחנו מלווים עד 20 מתאמנים בו זמנית, כי כל אחד מקבל את תשומת הלב של ארבעתנו. כשהמקומות מלאים, אנחנו אומרים את זה ביושר.</p>
+      </div>
+    </section>
+
+    <section class="final">
+      <h2>לא צריך להחליט עכשיו</h2>
+      <p class="lead">מדברים עשר דקות, ורק אם זה מתאים, ממשיכים.</p>
+      <a class="cta js-wa" href="https://wa.me/972546649909" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
+        כותבים לנו בוואטסאפ
+      </a>
+      <p class="micro">אנחנו קוראים כל הודעה בעצמנו.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p class="disc">הליווי אינו טיפול רפואי ואינו מחליף רופא, פיזיותרפיסט או דיאטן קליני. עם פציעה, הריון, מצב רפואי או רקע של הפרעת אכילה, מתחילים רק אחרי אישור של איש מקצוע, ובונים סביב ההנחיות שלו. מתחת לגיל 18, מתחילים רק בהסכמת הורה.</p>
+    <div class="wm"><span class="a">Familia</span><span class="b">FITNESS</span></div>
+    <div class="slogan">כוח של משפחה</div>
+    <div class="ig">@familia_fitness_coach</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var PHONE = "972546649909";
+  var q = new URLSearchParams(location.search);
+  var src = (q.get("s") || q.get("utm_source") || "ישיר").toLowerCase();
+  var label = {ig:"אינסטגרם", instagram:"אינסטגרם", tiktok:"טיקטוק", tt:"טיקטוק", yt:"יוטיוב", youtube:"יוטיוב", wa:"וואטסאפ", whatsapp:"וואטסאפ", "ישיר":"ישיר"}[src] || src;
+  var text = "היי פמיליה! מעניין אותי ליווי אישי\n" +
+             "המטרה שלי:\n" +
+             "מה הכי מקשה עליי היום:\n" +
+             "מתי הייתי רוצה להתחיל:\n" +
+             "(מקור: דף ליווי · " + label + ")";
+  var href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(text);
+  var links = document.querySelectorAll(".js-wa");
+  for (var i = 0; i < links.length; i++) links[i].href = href;
+})();
+</script>
+</body>
+</html>
