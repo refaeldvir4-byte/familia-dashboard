@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#04040a">
 <meta name="robots" content="noindex">
 <title>ליווי אישי · Familia Fitness</title>
-<meta name="description" content="ליווי אישי מהמשפחה של Familia Fitness: תוכנית אימונים, תפריט בגרמים, צ׳ק־אין שבועי וקבוצת וואטסאפ עם ארבעתנו. ₪999 לחודש.">
+<meta name="description" content="ליווי אישי אונליין מכל הארץ, מהמשפחה של Familia Fitness: תוכנית אימונים, תפריט בגרמים, צ׳ק־אין שבועי, מפגש חודשי וקבוצת וואטסאפ עם ארבעתנו. ₪999 לחודש. הטבת מייסדים: ₪699 בשלושת החודשים הראשונים, 5 מקומות בלבד.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -62,6 +62,17 @@
   .cta svg{width:24px; height:24px; fill:#120f06; flex:none}
   .cta:active{transform:translateY(1px)}
   .micro{text-align:center; color:var(--dim); font-size:14px; margin:11px 0 0}
+  .online{display:inline-flex; align-items:center; gap:8px; margin:0 0 16px; font-size:14.5px; font-weight:700; color:var(--txt);
+    background:rgba(201,168,76,.08); border:1px solid var(--line); border-radius:999px; padding:5px 14px}
+  .online i{width:8px; height:8px; border-radius:50%; background:var(--gold2); flex:none}
+  .founders{margin:0 0 20px; border:1.5px solid var(--line-strong); border-radius:20px; padding:16px 18px;
+    background:linear-gradient(180deg,rgba(201,168,76,.10),rgba(201,168,76,.03))}
+  .founders .fh{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 6px}
+  .founders .fh b{font-size:17.5px; font-weight:900; color:var(--gold2)}
+  .founders .spots{flex:none; font-size:13px; font-weight:800; color:#120f06; background:linear-gradient(95deg,var(--gold2),var(--gold)); border-radius:999px; padding:3px 11px}
+  .founders .fp{margin:0; font-size:16.5px; font-weight:700}
+  .founders .fp .num{font-family:var(--lat); font-weight:900; font-size:22px; color:var(--gold2); direction:ltr; display:inline-block}
+  .founders .fs{margin:8px 0 0; font-size:14px; color:var(--dim); line-height:1.55}
 
   /* sections */
   section{margin-top:40px}
@@ -128,7 +139,15 @@
     <h1>לא עוד תוכנית מהאינטרנט.<span class="g">ארבעתנו, בתוך האימון והתזונה שלכם.</span></h1>
     <p class="sub">משפחה של ארבעה אלופי WNBF שבונה את התוכנית סביב החיים שלכם, ומכיילת אותה כל שבוע לפי מה שקורה בפועל.</p>
 
+    <div class="online"><i></i>אונליין מכל הארץ · מפגש חודשי</div>
+
     <div class="price"><b>₪999</b><span>לחודש</span></div>
+
+    <div class="founders">
+      <div class="fh"><b>הטבת מייסדים</b><span class="spots">5 מקומות בלבד</span></div>
+      <p class="fp"><span class="num">₪699</span> לחודש בשלושת החודשים הראשונים, ואחר כך ₪999 רגיל.</p>
+      <p class="fs">חמשת המתאמנים הראשונים מקבלים את המחיר הזה. כשהמקומות נגמרים, נכתוב את זה כאן. ואם תרצו, נשמח לספר על התהליך שלכם, רק בהסכמה שלכם בכתב ובלי תמונות לפני ואחרי.</p>
+    </div>
 
     <a class="cta js-wa" href="https://wa.me/972546649909" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
@@ -143,7 +162,7 @@
           <li><i>✓</i><span>מי שכבר התחיל לזוז, ולא רוצה להמשיך לנחש לבד.</span></li>
           <li><i>✓</i><span>מי שיש לו מטרה ברורה, ובעיה שיד מקצועית יכולה לעזור בה: טכניקה, עקביות, או התחושה שאולי עושים את זה לא נכון.</span></li>
           <li><i>✓</i><span>מי שרוצה להתחיל בחודש הקרוב, ולא ״מתישהו״.</span></li>
-          <li><i>✓</i><span>מי שמתאמן באזור רמלה, כי חלק מהליווי נעשה פנים אל פנים.</span></li>
+          <li><i>✓</i><span>מי שגר בכל מקום בארץ. הליווי אונליין, ופעם בחודש נפגשים: פנים אל פנים ברמלה או בשיחת וידאו, מה שנוח לכם.</span></li>
         </ul>
       </div>
       <div class="card no-card">
@@ -157,7 +176,7 @@
 
     <section>
       <h2>מה כלול בליווי</h2>
-      <p class="lead">שמונה דברים נכנסים בליווי.</p>
+      <p class="lead">תשעה דברים נכנסים בליווי.</p>
       <div class="incl">
         <div class="item"><div class="n">01</div><h4>תוכנית אימונים אישית</h4><p>לבית או לחדר כושר, לפי הימים שיש לכם באמת. היא מופיעה באפליקציה.</p></div>
         <div class="item"><div class="n">02</div><h4>תפריט תזונה מותאם</h4><p>בגרמים, כמו באפליקציה, מאוכל שאוכלים ממילא ושאפשר לחיות איתו.</p></div>
@@ -167,6 +186,7 @@
         <div class="item"><div class="n">06</div><h4>כיולים משתנים</h4><p>התוכנית זזה איתכם. מה שלא עובד, משנים.</p></div>
         <div class="item"><div class="n">07</div><h4>גישה מלאה לאפליקציה</h4><p>כלולה בליווי.</p></div>
         <div class="item"><div class="n">08</div><h4>קבוצת וואטסאפ אישית</h4><p>אתם וארבעתנו, עם מענה מהבוקר ועד הלילה.</p></div>
+        <div class="item"><div class="n">09</div><h4>מפגש אחד בחודש</h4><p>פנים אל פנים ברמלה או בשיחת וידאו, לבחירתכם. עוברים יחד על החודש ומכוונים את ההמשך.</p></div>
       </div>
     </section>
 
@@ -181,7 +201,7 @@
       <ol class="steps">
         <li><span class="b">1</span><p>כותבים לנו בוואטסאפ מה המטרה ומה הכי מקשה היום.</p></li>
         <li><span class="b">2</span><p>שיחה קצרה, כעשר דקות, כדי לראות יחד אם הליווי מתאים. בלי התחייבות.</p></li>
-        <li><span class="b">3</span><p>אם זה מתאים, משלמים על החודש הראשון בביט או בהעברה בנקאית, ומקבלים קבלה.</p></li>
+        <li><span class="b">3</span><p>אם זה מתאים, משלמים על החודש הראשון בכרטיס אשראי, בקישור תשלום מאובטח, ומקבלים קבלה.</p></li>
         <li><span class="b">4</span><p>בונים יחד את התוכנית ואת התפריט, ופותחים את קבוצת הוואטסאפ.</p></li>
       </ol>
     </section>
@@ -189,7 +209,7 @@
     <section>
       <h2>כמה מתאמנים אנחנו לוקחים</h2>
       <div class="cap">
-        <p>אנחנו מלווים עד 20 מתאמנים בו זמנית, כי כל אחד מקבל את תשומת הלב של ארבעתנו. כשהמקומות מלאים, אנחנו אומרים את זה ביושר.</p>
+        <p>אנחנו מלווים עד 20 מתאמנים בו זמנית, כי כל אחד מקבל את תשומת הלב של ארבעתנו. חמשת המקומות הראשונים הם מקומות המייסדים. כשהמקומות מלאים, אנחנו אומרים את זה ביושר.</p>
       </div>
     </section>
 
@@ -200,7 +220,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
         כותבים לנו בוואטסאפ
       </a>
-      <p class="micro">אנחנו קוראים כל הודעה בעצמנו.</p>
+      <p class="micro">רפאל עונה בעצמו לכל הודעה, ושאר המשפחה מגבה אותו כשצריך.</p>
     </section>
   </main>
 
@@ -222,6 +242,7 @@
              "המטרה שלי:\n" +
              "מה הכי מקשה עליי היום:\n" +
              "מתי הייתי רוצה להתחיל:\n" +
+             "מאיפה בארץ אני:\n" +
              "(מקור: דף ליווי · " + label + ")";
   var href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(text);
   var links = document.querySelectorAll(".js-wa");
