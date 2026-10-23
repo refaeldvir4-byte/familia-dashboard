@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#050409">
 <title>מתחילים כאן · Familia Fitness</title>
-<meta name="description" content="תוכן ההתחלה למתאמן המתחיל — בחינם. בדיוק מה לעשות מהאימון הראשון.">
+<meta name="description" content="שלחו לנו סרטון של תרגיל וקבלו תיקון אישי בחינם, או דברו איתנו על ליווי אישי אונליין.">
 <meta name="robots" content="noindex">
 <style>
   :root{--gold:#c9a84c;--gold2:#f0d080;--ink:#070610;--panel:#12111d;--line:#2a2a3c;--txt:#f1efe7;--dim:#a7a4b3;--wa:#25d366}
@@ -55,23 +55,11 @@
 <body>
 <div class="wrap">
   <div class="kick">Familia Fitness</div>
-  <h1>מתחילים להתאמן?<span class="free">תוכן ההתחלה — בחינם</span></h1>
-  <p class="sub">כל מה שמתאמן מתחיל צריך לדעת לפני האימון הראשון: איך בוחרים משקל, כמה סטים, ומה עושים כשכואב.</p>
-
-  <ul class="benes">
-    <li><span class="ic">🗺️</span><div>בדיוק מה לעשות בכל אימון — צעד־אחר־צעד</div></li>
-    <li><span class="ic">🏠</span><div>בית או חדר כושר — מתאים לשניהם</div></li>
-    <li><span class="ic">🎬</span><div>סרטונים קצרים שמראים איך, לא רק מסבירים</div></li>
-  </ul>
-
-  <a class="cta" id="cta" href="#" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
-    שלחו "30" בוואטסאפ וקבלו את יום 1
-  </a>
-  <p class="micro">ללא ספאם · אנחנו קוראים כל הודעה · תשובה בדרך כלל באותו יום</p>
+  <h1>מתאמנים ולא בטוחים שזה נכון?<span class="free">תיקון אישי — בחינם</span></h1>
+  <p class="sub">שלחו לנו סרטון קצר של תרגיל, ומשפחה של אלופי WNBF תגיד לכם מה הדבר הכי חשוב לתקן.</p>
 
   <div class="fix" id="fixdoor">
-    <div class="t">🎥 שלחו לנו סרטון של תרגיל, ונחזיר לכם תיקון אישי. בחינם.</div>
+    <div class="t">🎥 איך זה עובד</div>
     <div class="d">10–20 שניות, מהצד, שרואים את כל הגוף. תוך 24 שעות נחזיר לכם את התיקון הכי חשוב.</div>
     <a class="fixbtn" id="fix" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.2 0-.3 0-.5s-.6-1.4-.8-1.9-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6 8.8a4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.6-1.2 2 2 0 0 0 .2-1.1c-.1-.1-.3-.2-.5-.3z"/></svg>
@@ -110,12 +98,6 @@
 
   function wa(text){ return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(text); }
 
-  document.getElementById("cta").href = wa(
-    "היי פמיליה! רוצה להתחיל את תוכן ההתחלה 💪\n"+
-    "מתאמן/ת ב: בית / חדר כושר\n"+
-    "יכול/ה להתאמן: 2 / 3 פעמים בשבוע\n"+
-    "(מקור: "+srcLabel+" · 30)"
-  );
 
   // form-check door -> WhatsApp with a prefilled message, tagged with source + "טכניקה"
   document.getElementById("fix").href = wa(
